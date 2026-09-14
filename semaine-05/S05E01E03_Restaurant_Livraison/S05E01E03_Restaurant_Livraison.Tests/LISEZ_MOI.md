@@ -1,7 +1,8 @@
 # Tests à écrire
 
-Ajoutez les quatre méthodes de test demandées dans les exercices 1 à 3. Les
-`[Theory]` regroupent plusieurs cas sans multiplier les méthodes.
+Dans ce projet de tests, ajoutez les quatre méthodes de test demandées dans les
+exercices 1 à 3. L’attribut xUnit `[Theory]` permet de regrouper plusieurs cas
+de test sans multiplier les méthodes.
 
 - E01 : une méthode paramétrée;
 - E02 : une méthode paramétrée;

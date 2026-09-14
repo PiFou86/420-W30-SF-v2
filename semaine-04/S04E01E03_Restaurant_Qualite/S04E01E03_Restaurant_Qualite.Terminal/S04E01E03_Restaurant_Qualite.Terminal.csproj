@@ -7,6 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\S04E01E03_Restaurant_Qualite\S04E01E03_Restaurant_Qualite.csproj" />
   </ItemGroup>
 </Project>

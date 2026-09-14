@@ -2,24 +2,83 @@
 
 ## Mission et durée
 
-En 55 minutes, séparez le calcul de la taxe du cas d'utilisation et rendez
+En 60 minutes, séparez le calcul de la taxe du cas d'utilisation et rendez
 visibles les commandes et les requêtes.
 
-Créez `fonctionnalite/srp-cqs` depuis `dev`.
+Dans le dépôt Git de l’exercice, créez la branche de fonctionnalité
+`fonctionnalite/srp-cqs` depuis la branche `dev`.
 
 ## Travail demandé
 
-1. Extrayez le calcul de taxe dans `CalculateurTaxe`.
-2. Injectez ce collaborateur dans `ServiceCommandes`.
-3. Gardez `Creer` comme commande qui modifie l'état et retourne la commande créée.
-4. Ajoutez la requête `ObtenirDerniereCommande()` sans modification d'état.
-5. Écrivez exactement deux tests :
+1. Dans le projet principal, extrayez le calcul de la taxe dans une nouvelle
+   classe nommée `CalculateurTaxe`.
+2. Ajoutez un paramètre de type `CalculateurTaxe` au constructeur de la classe
+   `ServiceCommandes` afin d’y injecter ce collaborateur.
+3. Changez le type de retour de la méthode `Creer` de la classe
+   `ServiceCommandes` de `Commande` à `void`. Cette méthode de commande doit
+   continuer à créer la commande, à la mémoriser dans `m_derniereCommande` et à
+   envoyer la notification, mais elle ne doit plus retourner la commande créée.
+4. Conservez la méthode de requête `ObtenirDerniereCommande()` dans la classe
+   `ServiceCommandes`. Elle doit retourner la dernière commande mémorisée sans
+   modifier l’état du service.
+5. Dans le projet de tests, écrivez exactement deux méthodes de test :
    - un test du calcul de taxe pour un sous-total de 40 $;
-   - un test prouvant que la requête retourne la dernière commande créée.
+   - un test prouvant que la requête retourne la dernière commande créée,
+     notamment son numéro et son sous-total.
 6. Expliquez dans `DECISIONS.md` pourquoi les deux classes ont des raisons de
    modification différentes et en quoi la requête respecte CQS.
 
-Fusionnez vers `dev`, testez, puis fusionnez `dev` vers `main` et testez encore.
+Dans le fichier `Program.cs` du projet Terminal, mettez ensuite à jour **les
+deux fonctions d’assemblage** pour fournir une instance de `CalculateurTaxe` au
+constructeur de `ServiceCommandes`. Adaptez aussi le code appelant : appelez
+d’abord la méthode de commande `Creer(...)`, puis obtenez la commande à afficher
+avec la méthode de requête `ObtenirDerniereCommande()`. Le code déjà vu n’est
+pas redonné étape par étape.
+
+<details>
+<summary>Rappel des semaines précédentes</summary>
+
+L’assemblage manuel appelle directement les constructeurs. L’assemblage avec
+le cadriciel déclare les associations avant `Build`, puis résout le service
+dans une portée. Quel cycle de vie convient à un calculateur sans état?
+
+</details>
+
+<details>
+<summary>Repère UML — à consulter après votre première tentative</summary>
+
+Le diagramme montre seulement les éléments touchés par SRP et CQS. La
+dépendance vers `INotificationCommande`, introduite à l’exercice 1, demeure en
+place même si elle n’est pas répétée ici.
+
+```mermaid
+classDiagram
+    direction TB
+    class ServiceCommandes {
+        - CalculateurTaxe m_calculateurTaxe
+        - Commande? m_derniereCommande
+        + ServiceCommandes(notification, calculateurTaxe)
+        + Creer(numero, sousTotal, client) void
+        + ObtenirDerniereCommande() Commande?
+    }
+    class CalculateurTaxe {
+        + Calculer(sousTotal) decimal
+    }
+    class Commande
+
+    ServiceCommandes --> CalculateurTaxe : reçoit et utilise
+    ServiceCommandes --> "0..1" Commande : crée et mémorise
+```
+
+**Question de lecture :** quelle méthode est une commande, quelle méthode est
+une requête et quelle responsabilité a quitté `ServiceCommandes`?
+
+</details>
+
+Dans le dépôt Git de l’exercice, fusionnez la branche
+`fonctionnalite/srp-cqs` dans la branche `dev` et exécutez les tests. Fusionnez
+ensuite la branche `dev` dans la branche `main`, puis exécutez de nouveau les
+tests sur `main`.
 
 Ne retestez pas la notification de l'exercice 1 : ce comportement est déjà
 couvert.
