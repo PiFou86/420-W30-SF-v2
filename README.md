@@ -9,20 +9,23 @@ de code pour chaque sujet abordé.
 Les notes de cours contiennent des explications plus détaillées ainsi que des
 exemples de code.
 
-> [!IMPORTANT] Lecture préalable obligatoire
-> 
-> Lisez attentivement les sections demandées avant leur présentation en classe.
+> [!IMPORTANT]
+>
+> Lecture préalable obligatoire : 
+> lisez attentivement les sections demandées avant leur présentation en classe.
 > Les lectures à effectuer sont indiquées dans le plan de cours.
 
-> [!TIP] Validation rapide de la lecture
+> [!TIP]
 >
-> Pour valider rapidement votre compréhension, essayez de répondre aux questions
+> Validation rapide de la lecture : 
+> pour valider rapidement votre compréhension, essayez de répondre aux questions
 > à choix multiples placées à la fin de chaque chapitre. Le corrigé se trouve
 > en annexe des notes de cours.
 
-> [!TIP] Exercices supplémentaires
+> [!TIP]
 >
-> Les notes de cours contiennent aussi de courts exercices facultatifs. Ils
+> Exercices supplémentaires :
+> les notes de cours contiennent aussi de courts exercices facultatifs. Ils
 > permettent de mettre rapidement en pratique une notion du chapitre et ne sont
 > pas à remettre.
 
@@ -36,14 +39,14 @@ La liste des travaux à remettre se trouve dans le fichier
 [`exercices_ramassés.md`](exercices_ramassés.md). Consultez la plateforme
 d'enseignement pour connaître les échéances et les modalités de remise.
 
-> [!TIP] À noter
+> [!TIP]
 >
-> Les exercices suivent une progression. Les premiers sont plus guidés, tandis
+> À noter : les exercices suivent une progression. Les premiers sont plus guidés, tandis
 > que les suivants demandent davantage d'autonomie et de créativité.
 
-> [!IMPORTANT] Réalisation des exercices
+> [!IMPORTANT]
 >
-> Vous devez réaliser tous les exercices, qu'ils soient à remettre ou non. Ils
+> Réalisation des exercices : vous devez réaliser tous les exercices, qu'ils soient à remettre ou non. Ils
 > vous aideront à assimiler les notions vues en classe et à développer vos
 > compétences en programmation orientée objet.
 
