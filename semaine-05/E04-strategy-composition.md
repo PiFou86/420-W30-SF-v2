@@ -1,4 +1,4 @@
-# Exercice 5
+# Exercice 4
 
 > [!IMPORTANT]
 > **Exercice ramassé — évaluation individuelle, 2,5 %. Niveau 0 : zéro IA.** La génération de
@@ -12,14 +12,14 @@ Prévoyez de 90 à 100 minutes. Remplacez le calcul conditionnel des rabais par
 des stratégies composables, puis démontrez le comportement avec des tests.
 
 Le départ se trouve dans le répertoire de solution
-`S05E05_Restaurant_Rabais`.
+`S05E04_Restaurant_Rabais`.
 
 ## Parcours Git obligatoire
 
 1. Dans le dépôt Git de l’exercice, créez la branche d’intégration `dev` depuis
    la branche `main`, puis publiez `dev` sur GitHub.
 2. Créez la branche de fonctionnalité
-   `fonctionnalite/exercice-5-strategy` depuis la branche `dev`.
+   `fonctionnalite/exercice-4-strategy` depuis la branche `dev`.
 3. Dans cette branche de fonctionnalité, réalisez au moins deux commits Git
    cohérents.
 4. Exécutez les tests de la solution avant de remettre votre travail. Vous pouvez
@@ -30,7 +30,7 @@ Revoyez les commandes Git de la semaine 3 au besoin.
 
 ## Travail demandé
 
-1. Dans le projet principal `S05E05_Restaurant_Rabais`, créez une interface
+1. Dans le projet principal `S05E04_Restaurant_Rabais`, créez une interface
    étroite nommée `IStrategieRabais`.
 2. Dans le projet principal, créez trois classes qui implantent cette interface
    pour représenter un rabais nul, un rabais fidélité de 10 % et un rabais fixe

@@ -1,6 +1,6 @@
 # Décisions
 
-À compléter selon les consignes de l'exercice 5 :
+À compléter selon les consignes de l'exercice 4 :
 
 - classes et interface jouant les rôles de contexte, de contrat Strategy et de
   stratégies concrètes;

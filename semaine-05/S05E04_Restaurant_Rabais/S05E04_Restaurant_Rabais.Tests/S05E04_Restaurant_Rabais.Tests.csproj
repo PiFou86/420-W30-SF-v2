@@ -13,6 +13,6 @@
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />
-    <ProjectReference Include="..\S05E05_Restaurant_Rabais\S05E05_Restaurant_Rabais.csproj" />
+    <ProjectReference Include="..\S05E04_Restaurant_Rabais\S05E04_Restaurant_Rabais.csproj" />
   </ItemGroup>
 </Project>
