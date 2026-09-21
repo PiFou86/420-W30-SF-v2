@@ -2,7 +2,7 @@
 
 ## Mission et durée
 
-En 55 minutes, rendez explicite le patron Strategy pour choisir la règle de
+En 60 minutes, rendez explicite le patron Strategy pour choisir la règle de
 tarification d'une livraison.
 
 Dans le dépôt Git de l’exercice, créez la branche de fonctionnalité
