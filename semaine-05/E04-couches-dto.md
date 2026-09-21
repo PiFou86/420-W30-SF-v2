@@ -1,4 +1,4 @@
-# Exercice 5
+# Exercice 4
 
 ## Mission et durée
 
@@ -9,20 +9,21 @@ entité et son DTO.
 ## Situation
 
 Une commande doit être confirmée, puis son numéro et son statut doivent être
-affichés. Le code actuel lit la saisie, vérifie les lignes, modifie le statut,
-construit le texte d'affichage et retourne un `CommandeDto` dans une même
-classe. L'entité `Commande` possède aussi une méthode qui retourne ce DTO.
+affichés. Imaginez une classe qui lit la saisie, vérifie les lignes, modifie
+le statut, construit le texte d'affichage et retourne un `CommandeDto`.
+L'entité `Commande` possède aussi une méthode qui retourne ce DTO. Il
+s'agit d'une situation à analyser; aucun code de départ n'est fourni.
 
 ## Travail demandé
 
-1. Dans votre fichier Markdown de réponse, classez les responsabilités
+1. Sur papier ou dans un fichier Markdown de réponse, classez les responsabilités
    suivantes entre la couche présentation, la couche Application et le
    domaine :
    - lire la saisie et afficher un message;
    - charger une commande et orchestrer sa confirmation;
    - refuser la confirmation d'une commande vide;
    - transporter le numéro et le statut vers la présentation.
-2. Dans le même fichier Markdown, dessinez le sens des dépendances
+2. Dans la même réponse, dessinez le sens des dépendances
    `présentation → Application → domaine`.
 3. Proposez la signature minimale de la classe de service applicatif
    `ConfirmerCommandeService`, de la méthode `Confirmer()` de l’entité

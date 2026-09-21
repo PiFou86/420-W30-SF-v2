@@ -9,7 +9,9 @@
 À compléter :
 
 - attentes communes des calculateurs substituables;
-- opération de description retirée du contrat de calcul;
+- raison pour laquelle le contrat de calcul reste étroit et la description
+  destinée à l’affichage sort des calculateurs;
+- délégation du calcul sous 50 $ par la classe du calculateur gratuit;
 - correction de la hiérarchie fragile;
 - ajout permis par OCP;
 - raison pour laquelle le polymorphisme obtenu n'est pas encore Strategy.
@@ -22,5 +24,7 @@
 - comportement variable et responsabilité stable du contexte;
 - classes ou interfaces jouant les rôles de contexte, de contrat Strategy, de
   stratégies concrètes et emplacement servant de point de composition;
+- rôle de la méthode statique `Program.ChoisirCalculateur` et endroit où
+  subsistent les conditions de sélection;
 - liens avec OCP, DIP et la composition;
 - distinction entre le mécanisme de polymorphisme et le patron Strategy.

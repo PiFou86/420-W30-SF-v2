@@ -2,9 +2,9 @@
 
 ## Mission et durée
 
-En 60 minutes, remplacez une hiérarchie fragile et une interface trop large par
-des interfaces claires et des responsabilités bien séparées. Vous préparez des calculateurs substituables sans encore
-transformer `ServiceLivraisons` : ce sera le rôle de l'exercice 3.
+En 60 minutes, remplacez une hiérarchie fragile par un contrat de calcul
+étroit et par la composition. Vous préparez des calculateurs substituables;
+la classe `ServiceLivraisons` deviendra un contexte Strategy à l’exercice 3.
 
 Dans le dépôt Git de l’exercice, créez la branche de fonctionnalité
 `fonctionnalite/solid-composition` depuis la branche `dev`.
@@ -17,30 +17,40 @@ description destinée à l’affichage. `CalculateurFraisGratuit` hérite donc d
 description « Tarification standard », qui ne lui convient pas.
 
 Réusinez ce modèle afin que chaque classe porte seulement les responsabilités
-qu’elle peut réellement honorer.
+utiles au calcul des frais.
 
-1. Créez un contrat pour calculer des frais de livraison et un autre contrat
-   pour fournir une description destinée à l’affichage. Remplacez l’héritage
-   entre les deux calculateurs fournis par ces contrats. Tous les calculateurs
-   doivent pouvoir calculer des frais, mais seul un calculateur qui possède une
-   description pertinente doit implanter le contrat de description. Choisissez
-   des noms qui indiquent clairement qu’ils concernent la livraison.
-2. N’injectez pas encore le contrat de calcul dans le constructeur de
-   `ServiceLivraisons` : ce sera le rôle de l’exercice 3.
-3. Ajoutez un calculateur de livraison prioritaire. Il applique la règle déjà
-   présente dans `ServiceLivraisons` : ses frais sont de `2 $ + 1 $` par
-   kilomètre. Ajoutez cette classe sans modifier les calculateurs standard et
-   gratuit existants.
-4. Dans le projet de tests, écrivez **un test unitaire xUnit paramétré**
-   (`[Theory]`) qui reçoit successivement les calculateurs standard, gratuit et
-   prioritaire à travers le contrat de calcul, puis vérifie le frais attendu.
-   Il ne s’agit pas de lancer le projet Terminal.
+1. Dans le projet principal, créez l’interface `ICalculateurFraisLivraison`
+   avec la seule méthode de calcul. Renommez les deux classes fournies pour
+   préciser qu’elles calculent des frais de livraison. Retirez leur relation
+   d’héritage et la méthode `ObtenirDescription()` : aucun calculateur ni
+   service n’a besoin de produire un texte destiné à l’affichage. Ce texte
+   appartient au projet Terminal, si l’on souhaite l’afficher.
+2. La classe du calculateur gratuit reçoit dans son constructeur un objet
+   calculateur standard. Elle retourne zéro à partir d’un sous-total de
+   `50 $`; en dessous, elle délègue le calcul à cet objet, sans recopier
+   la formule `4 $ + 0,75 $` par kilomètre. Son constructeur refuse une
+   dépendance `null` avec `ArgumentNullException`.
+3. Ajoutez une classe de calculateur prioritaire qui applique la règle déjà
+   présente dans la classe `ServiceLivraisons` : `2 $ + 1 $` par kilomètre.
+   Ajoutez-la sans modifier les deux autres calculateurs.
+4. Dans le projet de tests, conservez le test de la classe `Client` écrit à
+   l’exercice 1. Ajoutez une méthode de test unitaire xUnit paramétrée
+   (`[Theory]`) qui reçoit les trois calculateurs par l’interface
+   `ICalculateurFraisLivraison` et vérifie leurs frais. Incluez un cas sous
+   `50 $` et un cas à partir de `50 $` pour le calculateur gratuit. Ajoutez
+   aussi un test du constructeur de ce dernier avec une dépendance `null`.
+
+La classe `ServiceLivraisons` et le projet Terminal continuent de fonctionner
+comme à l’exercice 1. Vous injecterez le contrat de calcul dans le constructeur
+de `ServiceLivraisons` à l’exercice 3.
 
 Limitez-vous à ces trois calculateurs. Le but du test est de vérifier leur
 substitution, pas de couvrir toutes les distances possibles.
 
-Justifiez brièvement OCP, LSP et ISP dans `DECISIONS.md`. Expliquez aussi
-pourquoi des objets polymorphes ne constituent pas encore, à eux seuls, le
-patron Strategy. Réalisez ensuite le
-parcours de branches Git `fonctionnalite/solid-composition` → `dev` → `main`
-dans le dépôt de l’exercice.
+Dans `DECISIONS.md`, expliquez pourquoi `ICalculateurFraisLivraison`
+n’expose que le calcul : le futur service qui utilisera ce contrat n’a pas
+besoin de la méthode `ObtenirDescription()`. Justifiez aussi brièvement
+OCP, LSP et la composition, puis expliquez pourquoi des objets polymorphes
+ne constituent pas encore, à eux seuls, le patron Strategy. Réalisez
+ensuite le parcours de branches Git `fonctionnalite/solid-composition`
+→ `dev` → `main` dans le dépôt de l’exercice.

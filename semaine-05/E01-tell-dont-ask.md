@@ -24,6 +24,9 @@ Dans le dépôt Git de l’exercice, créez la branche de fonctionnalité
    avec `[Theory]` pour couvrir un client admissible et deux clients non
    admissibles.
 
+Conservez le calcul des frais, les deux classes de calculateurs et le projet
+Terminal dans la solution : les exercices 2 et 3 poursuivent ce même projet.
+
 Il n'est pas nécessaire de tester de nouveau le calcul complet des frais dans
 cet exercice.
 
