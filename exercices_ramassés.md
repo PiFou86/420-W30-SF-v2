@@ -1,7 +1,8 @@
 # Exercices ramassés
 
-- [Semaine 3 — Exercice 4](semaine-03/E04-injection-composition.md)
-- [Semaine 5 — Exercice 4](semaine-05/E04-strategy-composition.md)
+| Semaine | Exercice | Valeur | Objet évalué |
+|---|---|---:|---|
+| 5 | [Exercice 4 — Strategy et composition](./semaine-05/E04-strategy-composition.md) | 2,5 % | stratégie, injection par constructeur, composition, tests et justification |
 
-Fichier indicatif : consultez la plateforme d'enseignement pour connaître la
-version la plus à jour, les échéances et les modalités de remise.
+Les échéances et les modalités de remise sont indiquées sur la plateforme
+d’enseignement.

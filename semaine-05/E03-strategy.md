@@ -28,9 +28,11 @@ Avant de modifier la classe `ServiceLivraisons`, notez dans le fichier
 3. Dans la classe `ServiceLivraisons`, retirez la sélection par chaîne de
    caractères et la cascade conditionnelle. Sa méthode `CalculerFrais` doit
    déléguer le calcul à l’objet `ICalculateurFrais` reçu par le constructeur.
-4. Dans le projet de tests, écrivez exactement deux méthodes de test :
-   - un test du contexte avec une stratégie contrôlée;
-   - un `[Theory]` qui vérifie les deux stratégies fournies pour une même livraison.
+4. Conservez la méthode `[Theory]` de l’exercice 2 : elle prouve déjà que les
+   calculateurs sont substituables et qu’ils produisent les frais attendus.
+   Dans le projet de tests, ajoutez une seule nouvelle méthode de test du
+   contexte avec une stratégie contrôlée. Elle doit prouver que
+   `ServiceLivraisons` délègue le calcul au contrat reçu.
 5. Dans le fichier `DECISIONS.md`, associez explicitement les rôles du patron
    aux classes et à l’interface du projet : contexte, contrat Strategy,
    stratégies concrètes et point de composition.
@@ -44,6 +46,11 @@ Le choix de la stratégie appartient au point de composition.
 `ServiceLivraisons` délègue le calcul sans sélectionner le type concret.
 L'exercice 2 a construit le mécanisme polymorphe; celui-ci organise maintenant
 les rôles et la délégation qui caractérisent Strategy.
+
+> [!TIP]
+> **Test déjà présent :** la théorie de l’exercice 2 sur les calculateurs.
+> **Test à ajouter ici :** un test du contexte avec une stratégie contrôlée.
+> Ne dupliquez pas une seconde théorie sur les mêmes calculateurs.
 Après l’exécution des tests, fusionnez dans le dépôt Git la branche
 `fonctionnalite/strategy-livraison` dans la branche `dev`, puis la branche
 `dev` dans la branche `main`.

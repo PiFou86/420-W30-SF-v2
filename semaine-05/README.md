@@ -5,7 +5,7 @@
 | [Exercice 1](./E01-tell-dont-ask.md) | Confier une décision à l'objet qui possède l'état |
 | [Exercice 2](./E02-ocp-lsp-isp.md) | Réusiner avec OCP, LSP, ISP et la composition |
 | [Exercice 3](./E03-strategy.md) | Implanter le patron Strategy pour la tarification |
-| [Exercice 4](./E04-strategy-composition.md) | Réinvestir les principes dans un exercice individuel |
+| [Exercice 4 — ramassé](./E04-strategy-composition.md) | Réinvestir les principes dans un exercice individuel |
 | [Exercice 5](./E05-couches-dto.md) | Classer les responsabilités et protéger la frontière avec un DTO |
 
 Les exercices 1 à 3 utilisent la même solution .NET cumulative,

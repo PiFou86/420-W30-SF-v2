@@ -1,7 +1,7 @@
 # Exercice 4
 
 > [!IMPORTANT]
-> **Évaluation individuelle — 2,5 %. Niveau 0 : zéro IA.** La génération de
+> **Exercice ramassé — évaluation individuelle, 2,5 %. Niveau 0 : zéro IA.** La génération de
 > code, de tests ou de documentation par une IA est interdite.
 
 Consultez la plateforme d'enseignement pour l'échéance et les modalités de remise.
@@ -22,10 +22,9 @@ Le départ se trouve dans le répertoire de solution
    `fonctionnalite/exercice-4-strategy` depuis la branche `dev`.
 3. Dans cette branche de fonctionnalité, réalisez au moins deux commits Git
    cohérents.
-4. Fusionnez la branche de fonctionnalité dans la branche `dev`, exécutez les
-   tests de la solution, puis publiez `dev`.
-5. Fusionnez la branche `dev` dans la branche `main`, exécutez de nouveau les
-   tests, puis publiez `main`.
+4. Exécutez les tests de la solution avant de remettre votre travail. Vous pouvez
+   fusionner votre branche dans `dev` si cela vous aide à organiser votre dépôt,
+   mais ces fusions ne sont pas évaluées.
 
 Revoyez les commandes Git de la semaine 3 au besoin.
 
@@ -51,9 +50,9 @@ Revoyez les commandes Git de la semaine 3 au besoin.
    du patron Strategy, OCP, préférence pour la composition et résultat de
    `git log --oneline --graph --decorate --all`. Comme la solution de départ ne
    contient pas de projet Terminal, écrivez également dans `DECISIONS.md` un
-   exemple de code que le fichier `Program.cs` d’un éventuel projet Terminal
-   pourrait utiliser comme point de composition pour choisir et assembler la
-   stratégie.
+   exemple de code que la méthode statique `Main` de la classe `Program` d’un
+   éventuel projet Terminal pourrait utiliser comme point de composition pour
+   choisir et assembler la stratégie.
 
 ## Critères observables
 
@@ -64,4 +63,5 @@ Revoyez les commandes Git de la semaine 3 au besoin.
 - interfaces étroites et substituables;
 - normes C# du cours respectées;
 - tests structurés avec Arranger, Agir et Auditer;
-- branches Git `dev` et `main` testées après les fusions.
+- une branche de fonctionnalité et deux commits cohérents démontrent le travail
+  progressif; les fusions ne sont pas notées.

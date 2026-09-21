@@ -21,7 +21,9 @@ Dans le dépôt Git de l’exercice, créez la branche de fonctionnalité
 4. Conservez la méthode de requête `ObtenirDerniereCommande()` dans la classe
    `ServiceCommandes`. Elle doit retourner la dernière commande mémorisée sans
    modifier l’état du service.
-5. Dans le projet de tests, écrivez exactement deux méthodes de test :
+5. Conservez sans les modifier les deux méthodes de test d’interaction créées à
+   l’exercice 1. Dans le projet de tests, ajoutez exactement deux **nouvelles**
+   méthodes de test :
    - un test du calcul de taxe pour un sous-total de 40 $;
    - un test prouvant que la requête retourne la dernière commande créée,
      notamment son numéro et son sous-total.
@@ -80,5 +82,8 @@ Dans le dépôt Git de l’exercice, fusionnez la branche
 ensuite la branche `dev` dans la branche `main`, puis exécutez de nouveau les
 tests sur `main`.
 
-Ne retestez pas la notification de l'exercice 1 : ce comportement est déjà
-couvert.
+> [!TIP]
+> **Tests déjà présents :** les deux tests de notification de l’exercice 1.
+> **Tests à ajouter ici :** un test de `CalculateurTaxe` et un test de la
+> requête `ObtenirDerniereCommande()`. Ne retestez pas la notification : ce
+> comportement est déjà couvert.

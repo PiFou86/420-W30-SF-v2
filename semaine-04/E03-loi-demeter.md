@@ -22,23 +22,21 @@ sur l'objet connu directement par le service.
 3. Modifiez la méthode `Creer` de la classe `ServiceCommandes` pour qu’elle
    envoie la notification en communiquant seulement avec ses collaborateurs
    directs, notamment l’objet `Client`.
-4. Dans le projet de tests, écrivez un test avec la classe espion manuelle qui
-   vérifie le courriel transmis à la méthode de notification, sans tester
-   directement la structure interne de la classe `Client`.
-5. Dans le projet de tests, écrivez le test équivalent avec Moq et vérifiez
-   qu’aucun autre appel à l’interface `INotificationCommande` n’est effectué.
+4. Exécutez les deux tests d’interaction créés à l’exercice 1 : ils doivent
+   encore passer sans être modifiés. Ils caractérisent le comportement externe
+   de notification avant et après le réusinage.
+5. Dans le projet de tests, ajoutez une seule méthode de test qui vérifie que
+   `Client.ObtenirCourrielNotification()` retourne le courriel prévu, sans
+   tester directement la structure interne de la classe `Client`.
 6. Ajoutez dans `DECISIONS.md` la chaîne supprimée, le message qui la remplace
    et votre comparaison entre l’espion et Moq.
 
-<details>
-<summary>Rappel des semaines précédentes</summary>
-
-Pour un espion manuel, mémorisez seulement les valeurs nécessaires à
-l’observation. Avec Moq, utilisez la valeur attendue, `Times.Once` et
-`VerifyNoOtherCalls`. Quel comportement observable doit rester identique entre
-les deux tests?
-
-</details>
+> [!TIP]
+> **Tests déjà présents :** les deux tests d’interaction de l’exercice 1 et les
+> deux tests de taxe et CQS de l’exercice 2. **Test à ajouter ici :** un test
+> du message métier `Client.ObtenirCourrielNotification()`. Ne recréez pas les
+> tests avec espion et Moq : leur succès démontre déjà que la notification est
+> préservée.
 
 > [!WARNING]
 > N’utilisez pas Moq pour remplacer `Client`, `ProfilClient` ou `Coordonnees`.
