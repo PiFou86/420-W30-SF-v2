@@ -40,6 +40,52 @@ utiles au calcul des frais.
    `50 $` et un cas à partir de `50 $` pour le calculateur gratuit. Ajoutez
    aussi un test du constructeur de ce dernier avec une dépendance `null`.
 
+<details>
+<summary>Transmettre un objet avec <code>MemberData</code></summary>
+
+`MemberData` permet de fournir à une théorie des valeurs qui ne peuvent pas
+être construites directement dans un attribut. Dans cet exemple indépendant
+de l’exercice, une méthode fournit chaque cas sous forme de tableau. Chaque
+tableau contient exactement deux valeurs : un objet `DateOnly` et le jour
+attendu.
+
+```csharp
+public static IEnumerable<object[]> CasJours()
+{
+    yield return new object[]
+    {
+        new DateOnly(2024, 1, 1),
+        DayOfWeek.Monday
+    };
+
+    yield return new object[]
+    {
+        new DateOnly(2024, 1, 2),
+        DayOfWeek.Tuesday
+    };
+}
+
+[Theory]
+[MemberData(nameof(CasJours))]
+public void DayOfWeek_DateDonnee_RetourneJourAttendu(
+    DateOnly date,
+    DayOfWeek jourAttendu)
+{
+    DayOfWeek jourObtenu = date.DayOfWeek;
+
+    Assert.Equal(jourAttendu, jourObtenu);
+}
+```
+
+Les deux valeurs de chaque tableau correspondent, dans le même ordre, aux deux
+paramètres de la méthode de test. Consultez au besoin le rappel sur les
+[tests paramétrés de la semaine 2](../semaine-02/E02-tests-sans-dependance.md#2-tests-paramétrés).
+
+Pour adapter cette structure au test demandé dans l’exercice 2, quels types et
+quels paramètres votre théorie devra-t-elle recevoir?
+
+</details>
+
 La classe `ServiceLivraisons` et le projet Terminal continuent de fonctionner
 comme à l’exercice 1. Vous injecterez le contrat de calcul dans le constructeur
 de `ServiceLivraisons` à l’exercice 3.
