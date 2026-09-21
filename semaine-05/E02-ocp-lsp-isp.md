@@ -25,11 +25,12 @@ utiles au calcul des frais.
    d’héritage et la méthode `ObtenirDescription()` : aucun calculateur ni
    service n’a besoin de produire un texte destiné à l’affichage. Ce texte
    appartient au projet Terminal, si l’on souhaite l’afficher.
-2. La classe du calculateur gratuit reçoit dans son constructeur un objet
-   calculateur standard. Elle retourne zéro à partir d’un sous-total de
-   `50 $`; en dessous, elle délègue le calcul à cet objet, sans recopier
-   la formule `4 $ + 0,75 $` par kilomètre. Son constructeur refuse une
-   dépendance `null` avec `ArgumentNullException`.
+2. La classe du calculateur gratuit reçoit dans son constructeur un calculateur
+   de repli par l’interface `ICalculateurFraisLivraison`. Elle retourne zéro à
+   partir d’un sous-total de `50 $`; en dessous, elle délègue le calcul à cette
+   dépendance, sans recopier la formule `4 $ + 0,75 $` par kilomètre. Lors de
+   l’assemblage, fournissez-lui une instance du calculateur standard. Son
+   constructeur refuse une dépendance `null` avec `ArgumentNullException`.
 3. Ajoutez une classe de calculateur prioritaire qui applique la règle déjà
    présente dans la classe `ServiceLivraisons` : `2 $ + 1 $` par kilomètre.
    Ajoutez-la sans modifier les deux autres calculateurs.
