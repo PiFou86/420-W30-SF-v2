@@ -3,7 +3,7 @@
 ## Mission et durée
 
 En 60 minutes, remplacez une hiérarchie fragile et une interface trop large par
-des contrats honnêtes. Vous préparez des calculateurs substituables sans encore
+des interfaces claires et des responsabilités bien séparées. Vous préparez des calculateurs substituables sans encore
 transformer `ServiceLivraisons` : ce sera le rôle de l'exercice 3.
 
 Dans le dépôt Git de l’exercice, créez la branche de fonctionnalité
@@ -11,23 +11,32 @@ Dans le dépôt Git de l’exercice, créez la branche de fonctionnalité
 
 ## Travail demandé
 
-1. Dans le projet principal, séparez l’interface décrivant la capacité de
-   calculer des frais de celle décrivant la capacité d’afficher une
-   description.
-2. Vérifiez qu’aucune classe de calculateur n’est forcée d’implanter une
-   méthode qu’elle ne peut pas honorer.
-3. Retirez la relation d’héritage qui permet à une classe dérivée de briser les
-   attentes associées à la méthode de calcul des frais.
-4. Faites implanter la nouvelle interface étroite de calcul par les classes de
-   calculateurs compatibles, sans encore injecter cette interface dans le
-   constructeur de la classe `ServiceLivraisons`.
-5. Ajoutez une nouvelle classe de calculateur sans modifier les classes de
-   calculateurs existantes.
-6. Dans le projet de tests, écrivez **une seule méthode de test paramétrée** qui
-   reçoit successivement les objets calculateurs compatibles et leur résultat
-   attendu.
+Le projet de départ ne contient pas encore d’interface : il propose une
+hiérarchie de classes où `CalculateurFrais` mélange le calcul des frais et une
+description destinée à l’affichage. `CalculateurFraisGratuit` hérite donc de la
+description « Tarification standard », qui ne lui convient pas.
 
-Limitez-vous aux trois calculateurs demandés. Le but est de vérifier leur
+Réusinez ce modèle afin que chaque classe porte seulement les responsabilités
+qu’elle peut réellement honorer.
+
+1. Créez un contrat pour calculer des frais de livraison et un autre contrat
+   pour fournir une description destinée à l’affichage. Remplacez l’héritage
+   entre les deux calculateurs fournis par ces contrats. Tous les calculateurs
+   doivent pouvoir calculer des frais, mais seul un calculateur qui possède une
+   description pertinente doit implanter le contrat de description. Choisissez
+   des noms qui indiquent clairement qu’ils concernent la livraison.
+2. N’injectez pas encore le contrat de calcul dans le constructeur de
+   `ServiceLivraisons` : ce sera le rôle de l’exercice 3.
+3. Ajoutez un calculateur de livraison prioritaire. Il applique la règle déjà
+   présente dans `ServiceLivraisons` : ses frais sont de `2 $ + 1 $` par
+   kilomètre. Ajoutez cette classe sans modifier les calculateurs standard et
+   gratuit existants.
+4. Dans le projet de tests, écrivez **un test unitaire xUnit paramétré**
+   (`[Theory]`) qui reçoit successivement les calculateurs standard, gratuit et
+   prioritaire à travers le contrat de calcul, puis vérifie le frais attendu.
+   Il ne s’agit pas de lancer le projet Terminal.
+
+Limitez-vous à ces trois calculateurs. Le but du test est de vérifier leur
 substitution, pas de couvrir toutes les distances possibles.
 
 Justifiez brièvement OCP, LSP et ISP dans `DECISIONS.md`. Expliquez aussi
