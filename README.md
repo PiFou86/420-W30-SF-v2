@@ -11,13 +11,13 @@ exemples de code.
 
 > [!IMPORTANT]
 >
-> Lecture préalable obligatoire : 
+> Lecture préalable obligatoire :
 > lisez attentivement les sections demandées avant leur présentation en classe.
 > Les lectures à effectuer sont indiquées dans le plan de cours.
 
 > [!TIP]
 >
-> Validation rapide de la lecture : 
+> Validation rapide de la lecture :
 > pour valider rapidement votre compréhension, essayez de répondre aux questions
 > à choix multiples placées à la fin de chaque chapitre. Le corrigé se trouve
 > en annexe des notes de cours.
@@ -41,14 +41,43 @@ d'enseignement pour connaître les échéances et les modalités de remise.
 
 > [!TIP]
 >
-> À noter : les exercices suivent une progression. Les premiers sont plus guidés, tandis
-> que les suivants demandent davantage d'autonomie et de créativité.
+> À noter : les exercices suivent une progression. Les premiers sont plus guidés,
+> tandis que les suivants demandent davantage d'autonomie et de créativité.
 
 > [!IMPORTANT]
 >
-> Réalisation des exercices : vous devez réaliser tous les exercices, qu'ils soient à remettre ou non. Ils
-> vous aideront à assimiler les notions vues en classe et à développer vos
-> compétences en programmation orientée objet.
+> Réalisation des exercices : vous devez réaliser tous les exercices, qu'ils
+> soient à remettre ou non. Ils vous aideront à assimiler les notions vues en
+> classe et à développer vos compétences en programmation orientée objet.
+
+## Révision et auto-évaluation
+
+Deux ressources sont disponibles pour vous aider à vérifier votre compréhension
+des notions abordées chaque semaine :
+
+* [`guides_revision.md`](guides_revision.md) : regroupe les **guides de révision
+  active** de chaque semaine. Ces guides proposent des questions et des activités
+  permettant de revoir les notions sans simplement relire les notes de cours.
+* [`grilles_autoevaluation.md`](grilles_autoevaluation.md) : regroupe les
+  **grilles d'auto-évaluation** de chaque semaine. Elles permettent d'identifier
+  les notions que vous maîtrisez et celles qui nécessitent encore du travail.
+
+> [!TIP]
+>
+> Méthode suggérée :
+>
+> 1. Commencez par le **guide de révision active** sans consulter vos notes.
+> 2. Lorsque vous bloquez sur une notion, retournez dans les notes de cours ou
+>    dans les exercices correspondants.
+> 3. Remplissez ensuite la **grille d'auto-évaluation** afin d'identifier les
+>    notions que vous devriez retravailler.
+> 4. Reprenez les exercices associés aux notions que vous maîtrisez moins bien.
+
+> [!IMPORTANT]
+>
+> Ces ressources ne remplacent pas les exercices. Elles servent à orienter votre
+> révision et à vous aider à déterminer les notions qui nécessitent davantage de
+> pratique.
 
 ## Gestion de versions avec Git
 
