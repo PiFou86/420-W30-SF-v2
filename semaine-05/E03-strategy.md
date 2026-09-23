@@ -31,8 +31,10 @@ Avant de modifier la classe `ServiceLivraisons`, notez dans le fichier
    caractères et la cascade conditionnelle. Retirez les paramètres `Client`
    et `mode` de sa méthode `CalculerFrais` : elle reçoit désormais seulement
    `sousTotal` et `distanceKm`, puis délègue le calcul à l’objet reçu par le
-   constructeur. Adaptez les appels dans la méthode `Program.Main` du projet
-   Terminal.
+   constructeur. Avant la délégation, appliquez le contrat d'entrée établi à
+   l'exercice 2 : refusez un sous-total négatif et une distance négative ou
+   non finie avec `ArgumentOutOfRangeException`. Adaptez les appels dans la
+   méthode `Program.Main` du projet Terminal.
 4. Dans la classe `Program` du projet Terminal, créez une méthode statique
    `ChoisirCalculateur(string mode, Client client)` qui retourne un
    `ICalculateurFraisLivraison`. Elle choisit entre le calculateur gratuit,
@@ -42,12 +44,14 @@ Avant de modifier la classe `ServiceLivraisons`, notez dans le fichier
    avec son calculateur standard de repli. La règle du seuil de 50 $ demeure
    dans le calculateur gratuit. Appelez `ChoisirCalculateur` depuis
    `Program.Main`, puis construisez le service avec le résultat.
-5. Conservez les tests des exercices 1 et 2, dont les deux méthodes
-   `[Theory]`. Celle de l’exercice 2 prouve déjà que les calculateurs sont
-   substituables.
-   Dans le projet de tests, ajoutez deux méthodes de test de la classe
+5. Conservez les quatre méthodes de test des exercices 1 et 2, dont les
+   trois méthodes `[Theory]`. Les deux théories de l’exercice 2 vérifient la
+   substitution des calculateurs et leur contrat d'entrée commun. Dans le
+   projet de tests, ajoutez trois méthodes de test de la classe
    `ServiceLivraisons` : l’une utilise une stratégie contrôlée pour vérifier
-   la délégation, l’autre vérifie que le constructeur refuse `null`.
+   la délégation, l’autre vérifie que le constructeur refuse `null`, et une
+   méthode `[Theory]` vérifie le refus d'un sous-total négatif et d'une
+   distance négative ou non finie avant l'appel à la stratégie.
 6. Dans le fichier `DECISIONS.md`, associez explicitement les rôles du patron
    aux classes et à l’interface du projet : contexte, contrat Strategy,
    stratégies concrètes et point de composition.
@@ -64,11 +68,11 @@ L'exercice 2 a construit le mécanisme polymorphe; celui-ci organise maintenant
 les rôles et la délégation qui caractérisent Strategy.
 
 > [!TIP]
-> **Tests déjà présents :** les théories des exercices 1 et 2, ainsi que le
-> test de précondition du calculateur gratuit.
-> **Tests à ajouter ici :** la délégation du contexte et le refus d’une
-> stratégie `null`.
-> Ne dupliquez pas la théorie sur les calculateurs.
+> **Tests déjà présents :** la théorie de l’exercice 1, les deux théories de
+> l'exercice 2 et le test de précondition du calculateur gratuit.
+> **Tests à ajouter ici :** la délégation du contexte, le refus d’une
+> stratégie `null` et les préconditions de `ServiceLivraisons.CalculerFrais`.
+> Ne dupliquez pas les théories sur les calculateurs.
 
 Après l’exécution des tests, fusionnez dans le dépôt Git la branche
 `fonctionnalite/strategy-livraison` dans la branche `dev`, puis la branche

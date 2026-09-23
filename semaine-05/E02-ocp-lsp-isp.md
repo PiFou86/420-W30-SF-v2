@@ -34,12 +34,22 @@ utiles au calcul des frais.
 3. Ajoutez une classe de calculateur prioritaire qui applique la règle déjà
    présente dans la classe `ServiceLivraisons` : `2 $ + 1 $` par kilomètre.
    Ajoutez-la sans modifier les deux autres calculateurs.
-4. Dans le projet de tests, conservez le test de la classe `Client` écrit à
+4. Fixez le même contrat d'entrée pour la méthode de calcul de chacun des
+   trois calculateurs : le sous-total doit être positif ou nul et la distance
+   doit être positive ou nulle et finie. Refusez un sous-total négatif ainsi
+   qu'une distance négative, `NaN` ou infinie avec
+   `ArgumentOutOfRangeException`, y compris lorsque le calculateur gratuit
+   retournerait zéro sans avoir besoin de la distance. Une distance de zéro
+   reste valide.
+5. Dans le projet de tests, conservez le test de la classe `Client` écrit à
    l’exercice 1. Ajoutez une méthode de test unitaire xUnit paramétrée
    (`[Theory]`) qui reçoit les trois calculateurs par l’interface
    `ICalculateurFraisLivraison` et vérifie leurs frais. Incluez un cas sous
-   `50 $` et un cas à partir de `50 $` pour le calculateur gratuit. Ajoutez
-   aussi un test du constructeur de ce dernier avec une dépendance `null`.
+   `50 $` et un cas à partir de `50 $` pour le calculateur gratuit, ainsi
+   qu'un cas à distance zéro. Ajoutez aussi une méthode `[Theory]` qui
+   vérifie, pour chacun des trois calculateurs, le refus d'un sous-total
+   négatif et d'une distance négative, `NaN` ou infinie. Ajoutez un test du
+   constructeur du calculateur gratuit avec une dépendance `null`.
 
 <details>
 <summary>Transmettre un objet avec <code>MemberData</code></summary>
@@ -91,8 +101,9 @@ La classe `ServiceLivraisons` et le projet Terminal continuent de fonctionner
 comme à l’exercice 1. Vous injecterez le contrat de calcul dans le constructeur
 de `ServiceLivraisons` à l’exercice 3.
 
-Limitez-vous à ces trois calculateurs. Le but du test est de vérifier leur
-substitution, pas de couvrir toutes les distances possibles.
+Limitez-vous à ces trois calculateurs. Le but des tests est de vérifier leur
+substitution et leur contrat d'entrée commun, pas de couvrir toutes les
+distances possibles.
 
 Dans `DECISIONS.md`, expliquez pourquoi `ICalculateurFraisLivraison`
 n’expose que le calcul : le futur service qui utilisera ce contrat n’a pas

@@ -47,20 +47,24 @@ Revoyez les commandes Git de la semaine 3 au besoin.
    `CalculateurFacture` doit déléguer le calcul sans sélectionner une
    implantation concrète.
 6. Ajoutez dans le projet principal une nouvelle classe de stratégie composée
-   qui reçoit deux objets `IStrategieRabais` et les applique successivement,
-   sans modifier les classes de stratégies existantes.
+   qui reçoit deux objets `IStrategieRabais` et les applique successivement :
+   le résultat de la première est transmis à la seconde, dans l'ordre reçu
+   au constructeur. Ne modifiez pas les classes de stratégies existantes.
 7. Ajoutez les préconditions suivantes : le constructeur de
    `CalculateurFacture` et celui de la stratégie composée refusent leurs
    dépendances `null`; la méthode `CalculerTotal(decimal sousTotal)` refuse un
    sous-total négatif avec `ArgumentOutOfRangeException`.
-8. Dans le projet de tests, écrivez exactement six méthodes de test :
+8. Dans le projet de tests, écrivez exactement sept méthodes de test :
    - un `[Theory]` pour `ReglesRabais.LimiterTotalAZero`;
    - un `[Theory]` pour les valeurs limites du rabais fixe;
    - un test du calculateur avec une stratégie contrôlée;
    - un test qui vérifie la précondition du sous-total négatif;
    - un test du constructeur de `CalculateurFacture` avec une stratégie `null`;
    - un `[Theory]` qui vérifie que le constructeur de la stratégie composée
-     refuse `null` pour chacun de ses deux paramètres.
+     refuse `null` pour chacun de ses deux paramètres;
+   - un `[Theory]` qui vérifie le résultat de la stratégie composée avec le
+     rabais fidélité et le rabais fixe dans les deux ordres. Partez d'un
+     sous-total de `20 $` pour que l'ordre d'application soit observable.
 9. Complétez le fichier `DECISIONS.md` situé à la racine de la solution : rôles
    du patron Strategy, OCP, préférence pour la composition et résultat de
    `git log --oneline --graph --decorate --all`. Comme la solution de départ ne
@@ -76,6 +80,7 @@ Revoyez les commandes Git de la semaine 3 au besoin.
 - la classe contexte délègue le calcul et le fichier `DECISIONS.md` situe le
   point de composition;
 - interfaces étroites et substituables;
+- les deux rabais composés sont appliqués dans l'ordre reçu;
 - appel statique explicite à `ReglesRabais.LimiterTotalAZero(...)`, distinct de
   la délégation vers une stratégie injectée;
 - préconditions explicites aux frontières du contexte et des dépendances;
