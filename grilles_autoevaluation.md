@@ -8,4 +8,4 @@
 | **Semaine 4** | Substitution d’une dépendance par une abstraction, application de DI et DIP, SRP, CQS et loi de Déméter | [Grille d'auto-évaluation – S4](semaine-04/Grille_autoevaluation_S4_remplissable.pdf) |
 | **Semaine 5** | Tell Don’t Ask, OCP, LSP, ISP, héritage vs composition et patron Strategy | [Grille d'auto-évaluation – S5](semaine-05/Grille_autoevaluation_S5_remplissable.pdf) |
 | **Semaine 6** | Révision générale et préparation à l’examen 1 | [Grille d'auto-évaluation – S6](semaine-06/Grille_autoevaluation_S6_remplissable.pdf) |
-| **Semaine 7** | Exceptions simples et personnalisées, collections, Repository en mémoire et distribution TP01 | [Grille d’autoévaluation – S7](semaine-06/Grille_autoevaluation_S7_remplissable.pdf) |
+| **Semaine 7** | Exceptions simples et personnalisées, collections, Repository en mémoire et distribution TP01 | [Grille d’autoévaluation – S7](semaine-07/Grille_autoevaluation_S7_remplissable.pdf) |
