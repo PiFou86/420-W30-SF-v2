@@ -7,5 +7,6 @@
 
 Pour une équipe de trois seulement, ajouter une ligne Réservations, `JOURNAL_EQUIPIER_3.md`, `lots/Reservations`. Adapter les numéros de journal si les lots sont attribués autrement, sans ambiguïté sur la personne responsable.
 
+- Lien du dépôt GitHub de l'équipe : 
 - Taille de l'équipe et attribution approuvées par l'enseignant :
-- Commit final commun :
+- Commit final commun : 

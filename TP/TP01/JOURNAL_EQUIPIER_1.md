@@ -43,5 +43,5 @@ réponse reçue, éléments repris et vérifications effectuées.
 - Données du cas normal et des cas limites démontrés :
 - Cas d'incident technique et message utilisateur observé :
 - Commande de lancement et preuve de fonctionnement sans les autres lots :
-- Contribution à la zone commune (fichiers et justification) :
+- Contribution aux livrables communs (AUTHORS, diagramme, procédure d’intégration et revue; fichiers et justification) :
 - Contributions d'autres personnes dans mon lot, déclarées précisément :

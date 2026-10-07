@@ -66,4 +66,4 @@ Enregistrer la réservation 301 dans JSON. Créer un deuxième objet dépôt JSO
 - Message utilisateur sans chemin complet, secret ni trace; journal avec opération et type, distinct du fichier des données. Journal inaccessible : message sûr encore affiché.
 - Tester au moins un incident du port simulé avec une doublure locale : il ne devient pas un refus métier attendu.
 
-Ces vérifications complètent le travail du domaine et du dépôt mémoire commencé en S7. Les livrables complets de fin de TP restent ceux de l'[énoncé](ENONCE.md).
+Ces vérifications complètent le travail du domaine et du dépôt mémoire commencé en S7. Les livrables complets de fin de TP restent ceux de l'[énoncé](README.md).

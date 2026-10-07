@@ -22,7 +22,7 @@ quatre cas de tests sur la classe `Reservation`; ajoutez les deux cas de
 l'exercice 1 et les six cas de l'exercice 3 pour obtenir **au moins douze cas
 réussis**. L'exercice 2 ne demande ni nouvelle classe ni test automatisé.
 
-Ces exercices préparent l'amorce du [TP01](../TP/TP01/ENONCE.md), distribué
+Ces exercices préparent l'amorce du [TP01](../TP/TP01/README.md), distribué
 cette semaine. Chaque personne poursuit ensuite le travail dans sa propre
 solution du TP : règles du domaine, tests et dépôt en mémoire en semaine 7;
 persistance JSON et incidents de fichiers en semaine 8. Les exercices ne

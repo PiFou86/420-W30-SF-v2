@@ -1,6 +1,6 @@
 # Fiches individuelles du TP01
 
-Un lot désigne **le travail fonctionnel d'une personne, avec sa solution et ses cinq projets**, selon l'[énoncé](ENONCE.md). Les trois lots portent sur des dimensions différentes du restaurant. Chaque personne réalise un domaine, un algorithme, un cas d'utilisation, ses dépôts et une console. Tous suivent les mêmes règles de dépendance, de tests, de persistance et de message sûr de l'énoncé. Une méthode publique reçoit une dépendance non nulle; ses autres préconditions sont documentées et testées. Aucun lot n'utilise les projets d'un coéquipier.
+Un lot désigne **le travail fonctionnel d'une personne, avec sa solution et ses cinq projets**, selon l'[énoncé](README.md). Les trois lots portent sur des dimensions différentes du restaurant. Chaque personne réalise un domaine, un algorithme, un cas d'utilisation, ses dépôts et une console. Tous suivent les mêmes règles de dépendance, de tests, de persistance et de message sûr de l'énoncé. Une méthode publique reçoit une dépendance non nulle; ses autres préconditions sont documentées et testées. Aucun lot n'utilise les projets d'un coéquipier.
 
 ## Lot A — Commandes
 

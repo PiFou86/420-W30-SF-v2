@@ -92,4 +92,4 @@ Consultez aussi le [résumé des commandes Git](git/README.md).
 
 ## Travaux pratiques
 
-- [TP01 — lots individuels autonomes](TP/TP01/ENONCE.md), pour un binôme ou une équipe de trois, avec [grille d’évaluation](TP/TP01/GRILLE.md).
+- [TP01 — lots individuels autonomes](TP/TP01/README.md), pour un binôme ou une équipe de trois, avec [grille d’évaluation](TP/TP01/GRILLE.md).

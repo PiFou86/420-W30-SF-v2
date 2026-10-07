@@ -4,7 +4,7 @@
 
 | Critère | Points | Preuves |
 |---|---:|---|
-| Attribution, conventions, contrats et règles de dépendance | 10 | AUTHORS, conventions, solutions individuelles autonomes, contrats propres à chaque lot |
+| Attribution, contrats et règles de dépendance | 10 | AUTHORS, solutions individuelles autonomes, interfaces de dépôt et références de projets conformes aux règles de dépendance |
 | Diagramme Mermaid | 5 | Lots requis, relations pertinentes, dépendances des quatre couches et contributions attribuées |
 | Intégration et traçabilité commune | 10 | Procédure reproductible, solution d'équipe, PR/revues et état des lots au commit final |
 
@@ -21,14 +21,8 @@
 | Capsule individuelle | 10 | Parcours dans son lot, algorithme, limite, choix de conception, test et commit; maximum cinq minutes |
 | **Sous-total individuel** | **75** | |
 
+Les normes du cours sont vérifiées directement dans le code et la structure des projets, au sein des critères concernés. Aucun document de conventions ni point supplémentaire n'est demandé.
+
 **Note d'une personne = points communs + points de son propre lot.** Le lot Commandes, le lot Menu et, s'il existe, le lot Réservations utilisent cette même grille. Un binôme n'est pas évalué sur Réservations. Le troisième membre bénéficie d'un lot complet de même nature et du même barème; il n'est pas seulement responsable de documentation ou d'intégration.
-
-## Procédure d'évaluation indépendante
-
-1. Lire AUTHORS et le journal pour identifier la personne, son lot et le commit de référence.
-2. Copier uniquement `lots/NomDuLot` dans un dossier temporaire; compiler sa solution, exécuter ses tests et lancer son parcours avec ses données. Aucun fichier d'un autre lot ni dossier `commun/` n'est requis.
-3. Vérifier les cas de sa fiche et de DONNEES, puis la correspondance avec sa capsule et ses contributions. Une trace de commit contribue à l'attribution mais ne prouve pas seule la compréhension; le test expliqué et la capsule servent aussi de preuves.
-4. Attribuer ses 75 points sur ces preuves. Une erreur d'un autre lot ou de la solution d'équipe ne retire pas de points individuels à une solution isolée qui fonctionne.
-5. Évaluer séparément les 25 points communs. En cas de membre absent ou de lot non livré, conserver l'évaluation individuelle; apprécier les critères communs sur les éléments effectivement remis et les preuves attribuées, sans transférer automatiquement la charge d'un absent.
 
 Une incapacité de compilation dans **son propre lot** limite les preuves exécutables de cette personne; les éléments observables restants sont appréciés selon leur critère. L'enseignant ne doit pas réparer le lot d'un coéquipier pour pouvoir examiner le travail d'une autre personne.

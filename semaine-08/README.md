@@ -10,4 +10,4 @@ Les séances 15 et 16 consolident l'architecture déjà introduite : présentati
 
 Les exercices 1 et 3 partagent la solution cumulative `S08E01E03_ReservationsFichier`; l'exercice 2 produit une analyse en Markdown. Les noms historiques des fichiers d'énoncés restent stables. Travailler depuis `dev` dans `fonctionnalite/architecture`, avec les tests avant et après fusion.
 
-[Énoncé du TP01](../TP/TP01/ENONCE.md) · [Lots individuels](../TP/TP01/LOTS.md) · [Grille d’évaluation](../TP/TP01/GRILLE.md).
+[Énoncé du TP01](../TP/TP01/README.md) · [Lots individuels](../TP/TP01/LOTS.md) · [Grille d’évaluation](../TP/TP01/GRILLE.md).

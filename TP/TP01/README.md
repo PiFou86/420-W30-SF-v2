@@ -65,7 +65,9 @@ exigée.
 
 ## Livrables communs — 25 points
 
-L'équipe fournit `AUTHORS.md`, les conventions de solution, un diagramme Mermaid et la procédure d'intégration. Les solutions `TP01_Equipe2.slnx` et `TP01_Equipe3.slnx` regroupent les lots requis, tout en conservant les solutions individuelles. Aucun noyau métier commun n'est requis; ne pas déplacer les entités des lots vers `commun/`.
+L'équipe fournit `AUTHORS.md`, un diagramme Mermaid et la procédure d'intégration. Les solutions `TP01_Equipe2.slnx` et `TP01_Equipe3.slnx` regroupent les lots requis, tout en conservant les solutions individuelles. Aucun noyau métier commun n'est requis; ne pas déplacer les entités des lots vers `commun/`.
+
+Les normes de nommage, de code et d'organisation imposées dans le cours s'appliquent directement; aucun document de conventions n'est à rédiger. Leur respect est vérifié dans le code et la structure des projets. Consigner la procédure d'intégration dans ce README commun : commandes de compilation et de tests de la solution d'équipe, PR relues et commit final. Les interfaces des dépôts constituent les contrats de chaque lot; aucun document de contrats séparé n'est demandé.
 
 Le diagramme montre les lots requis et leurs quatre couches. Chaque personne indique la partie qu'elle a préparée/revue. Le code des autres lots n'est pas nécessaire pour démontrer les règles de dépendance de son propre lot. La grille commune et la grille individuelle sont séparées dans [GRILLE.md](GRILLE.md).
 
@@ -80,18 +82,18 @@ Le diagramme montre les lots requis et leurs quatre couches. Chaque personne ind
 
 Pour la validation JSON, enregistrer avec un premier objet dépôt, créer un **deuxième objet dépôt JSON configuré sur le même fichier**, puis lui faire relire les données. Vérifier les valeurs et l'état des objets reconstruits. Les deux objets peuvent être créés successivement dans un même test automatisé; aucun redémarrage du programme n'est exigé. Les étapes précises et les données attendues sont dans [DONNEES.md](DONNEES.md).
 
-1. **Semaine 7 — contrats et attribution** : affecter les lots, vérifier les départs individuels et convenir des règles Git et des interfaces de chaque lot. La semaine 7 étudie exceptions, collections et Repository en mémoire. La persistance, la configuration et la journalisation seront introduites en semaine 8.
+1. **Semaine 7 — contrats et attribution** : affecter les lots, vérifier les départs individuels, appliquer les règles Git du cours et préciser les contrats de dépôt de chaque lot dans les interfaces fournies. La semaine 7 étudie exceptions, collections et Repository en mémoire. La persistance, la configuration et la journalisation seront introduites en semaine 8.
 2. **Semaine 7 — premier comportement testé** : implanter le domaine, l'algorithme et le dépôt mémoire de son lot; préparer les données de ses cas de test. Couvrir un cas normal, une borne et un refus.
 3. **Semaine 8 — fichiers et structure complète** : introduire la persistance et la configuration, réinvestir le découpage présentation / Application / domaine / Infrastructure, implanter JSON, les conversions et la journalisation simple, puis conserver les comportements avec les tests.
 4. **Semaine 8 — présentation et intégration** : relier la console, vérifier son lot isolément et fusionner ses changements par une PR relue. La revue ne transfère pas la responsabilité du lot.
 
-Utiliser `dev` pour l'intégration et `fonctionnalite/nom-court` depuis `dev`. Compiler/tester avant et après fusion. Les sorties `bin/`, `obj/`, journaux et données générées ne sont pas suivies; la configuration sans secret et les petits exemples nécessaires le sont. 
+Utiliser `dev` pour l'intégration et `fonctionnalite/nom-court` depuis `dev`. Compiler/tester avant et après fusion. Les sorties `bin/`, `obj/`, journaux et données générées ne sont pas suivies; la configuration sans secret et les petits exemples nécessaires le sont.
 
 ## Barème et remise
 
 | Composante | Nature | Points |
 |---|---|---:|
-| Conventions, contrats et dépendances | Commune | 10 |
+| Attribution, contrats et règles de dépendance | Commune | 10 |
 | Diagramme Mermaid | Commune | 5 |
 | Procédure et preuves d'intégration | Commune | 10 |
 | Lot vertical fonctionnel et autonome | Individuelle | 40 |

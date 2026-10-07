@@ -75,4 +75,4 @@ Dans la section Exercice 3 de `DECISIONS.md`, écrire une phrase sur le devenir 
 
 Les trois méthodes sont complétées, les six tests du dépôt passent et la démonstration affiche les valeurs attendues. La suite contient alors **au moins douze cas** : quatre cas déjà fournis sur Reservation, deux cas ajoutés à l'exercice 1 et six cas ajoutés ici. L'exercice 2 ne demande aucun nouveau test automatisé.
 
-Ne pas recréer le client, la trace ou l'assemblage. Les vérifications supplémentaires du corrigé complet ne sont pas de nouvelles tâches obligatoires. Ce parcours de 75 minutes prépare l'amorce du [TP01](../TP/TP01/ENONCE.md); sa réalisation se poursuit ensuite dans le lot propre à chaque personne.
+Ne pas recréer le client, la trace ou l'assemblage. Les vérifications supplémentaires du corrigé complet ne sont pas de nouvelles tâches obligatoires. Ce parcours de 75 minutes prépare l'amorce du [TP01](../TP/TP01/README.md); sa réalisation se poursuit ensuite dans le lot propre à chaque personne.
