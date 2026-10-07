@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="S09E01_Commandes.Domaine/S09E01_Commandes.Domaine.csproj" />
+  <Project Path="S09E01_Commandes.Application/S09E01_Commandes.Application.csproj" />
+  <Project Path="S09E01_Commandes.Infrastructure/S09E01_Commandes.Infrastructure.csproj" />
+  <Project Path="S09E01_Commandes.Terminal/S09E01_Commandes.Terminal.csproj" />
+  <Project Path="S09E01_Commandes.Tests/S09E01_Commandes.Tests.csproj" />
+</Solution>

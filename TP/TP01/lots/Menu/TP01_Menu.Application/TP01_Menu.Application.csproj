@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net10.0</TargetFramework><LangVersion>14.0</LangVersion><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><RootNamespace>Menu.Application</RootNamespace></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../TP01_Menu.Domaine/TP01_Menu.Domaine.csproj" /></ItemGroup>
+</Project>

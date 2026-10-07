@@ -1,26 +1,27 @@
 # Exercice 1
 
-## Mission et durée
+## Mission - 15 minutes
 
-Environ 40 minutes. Pour chaque situation, décidez si une précondition, un refus métier attendu ou une erreur technique est en jeu. Écrivez ensuite les éléments C# demandés.
+Prédire une exécution et compléter une exception personnalisée simple dans le [départ](S07E03_Reservations/README.md). La classe Reservation, la méthode Tracer de la classe ParcoursExceptions et la surcharge d'exception avec une cause sont fournies; ne pas les réécrire.
 
-## Situation
+## Travail essentiel
 
-Une réservation possède un numéro strictement positif et un titre non vide. Une tentative de réservation peut être refusée parce qu'une plage horaire est déjà occupée. Plus tard, un dépôt fichier pourrait échouer à la lecture.
+1. Sans exécuter, prédire la trace de la méthode Tracer avec les numéros 17 et 0. Lancer ensuite le Terminal avec `--exceptions`; expliquer pourquoi « créée » manque en cas d'échec et pourquoi finally n'est pas un catch.
+2. Dans la bibliothèque principale, compléter **seulement le constructeur à un paramètre** de la classe ReservationIntrouvableException. Le message et l'appel à base sont déjà fournis : refuser un numéro non positif avec ArgumentOutOfRangeException, puis conserver le numéro dans la propriété Numero.
+3. Dans le projet Tests, ajouter deux cas : le numéro 17 est conservé; le numéro 0 est refusé avec le paramètre `numero`. Construire directement les objets. En une phrase, distinguer une recherche ordinaire absente, représentée par null, d'un objet annoncé connu mais manquant, signalé par ce type personnalisé dans le parcours strict fourni.
 
-## Travail demandé
+Point de contrôle : prédiction vérifiée et deux nouveaux tests réussis. Les quatre cas fournis sur Reservation restent inchangés. L'écriture de la trace, la gestion d'InnerException et les tests supplémentaires des autres valeurs ne sont pas demandés dans le parcours allégé.
 
-1. Sur papier ou dans un fichier Markdown, écrivez le constructeur de la classe `Reservation` : il refuse `numero <= 0` avec `ArgumentOutOfRangeException` et un titre vide avec `ArgumentException`.
-2. Dans un service qui tente une réservation, expliquez pourquoi « plage déjà occupée » est un refus attendu plutôt qu'une exception technique. Donnez une signature possible utilisant `Result<Reservation>` ou un résultat équivalent.
-3. Créez une exception `ReservationIntrouvableException` qui conserve le numéro demandé dans une propriété en lecture seule. Expliquez dans quel cas ce type apporte plus qu'une exception standard; ne l'utilisez pas pour chaque refus normal.
-4. Décrivez au moins un cas de test pour chaque précondition du constructeur et un cas pour la propriété `Numero` de l'exception personnalisée. Ces tests seront codés dans le projet de tests de l'exercice 3, avec les classes `ReservationTests` et `ReservationIntrouvableExceptionTests`.
-5. Précisez où vous intercepteriez une erreur de lecture technique et ce que vous éviteriez d'afficher à l'utilisateur. L'implantation du dépôt fichier attend la semaine 8.
+```bash
+dotnet run --project S07E03_Reservations.Terminal -- --exceptions
+dotnet test S07E03_Reservations.slnx
+```
 
-Point de contrôle : vous devez avoir un extrait de constructeur, un extrait d'exception et trois cas de test nommés. Aucun projet .NET à créer à cette étape.
+Exécuter depuis le dossier de la solution.
 
 <details>
-<summary>Rappel des semaines précédentes</summary>
+<summary>Rappel : tests AAA</summary>
 
-Revoir les [tests AAA de la semaine 2](../semaine-02/README.md). API utiles : `Assert.Throws<T>`, `ArgumentException.ThrowIfNullOrWhiteSpace`. La valeur rejetée empêche-t-elle un objet invalide d'exister?
+[Semaine 2](../semaine-02/README.md). API : Assert.Throws<T>, Assert.Equal, ParamName et nameof. Quel invariant protège le numéro positif?
 
 </details>

@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><LangVersion>14.0</LangVersion><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><RootNamespace>TP01_Commandes.Terminal</RootNamespace></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../TP01_Commandes.Application/TP01_Commandes.Application.csproj" /><ProjectReference Include="../TP01_Commandes.Infrastructure/TP01_Commandes.Infrastructure.csproj" /></ItemGroup>
+</Project>

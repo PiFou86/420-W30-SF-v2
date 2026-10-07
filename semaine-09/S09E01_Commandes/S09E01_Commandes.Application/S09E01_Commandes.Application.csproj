@@ -1,0 +1,1 @@
+<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><TargetFramework>net10.0</TargetFramework><LangVersion>14.0</LangVersion><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><RootNamespace>Commandes.Application</RootNamespace></PropertyGroup><ItemGroup><ProjectReference Include="../S09E01_Commandes.Domaine/S09E01_Commandes.Domaine.csproj" /></ItemGroup></Project>

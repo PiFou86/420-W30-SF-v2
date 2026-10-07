@@ -1,21 +1,19 @@
 # Exercice 2
 
-## Mission et durée
+## Mission - 15 minutes
 
-Environ 40 minutes. Choisissez des collections pour des besoins observables avant de coder.
+Choisir une collection et vérifier quelques prédictions. La démonstration est fournie dans le fichier DemonstrationCollections.cs du projet Terminal du [départ](S07E03_Reservations/README.md). Aucune nouvelle classe ni nouveau test automatisé n'est demandé ici.
 
-## Travail demandé
+## Travail essentiel
 
-1. Dans `CHOIX_COLLECTIONS.md`, associez une collection à chacun de ces besoins : retrouver une réservation par numéro; conserver des étiquettes uniques; traiter des demandes dans l'ordre d'arrivée; afficher un historique ordonné qui accepte les doublons. Justifiez chaque choix en une phrase.
-2. Esquissez une classe `CatalogueReservations` avec une collection privée adaptée à la recherche par numéro. Précisez les contrats des méthodes `Ajouter(Reservation reservation)` et `Obtenir(int numero)` : refus de `null`, refus du doublon, refus du numéro non positif et retour `null` pour l'absence.
-3. Précisez comment la méthode `ObtenirToutes()` protège la structure interne. Expliquez explicitement pourquoi elle ne rend pas les objets `Reservation` immuables.
-4. Préparez une liste de cas de test pour l'ajout, le doublon, l'absence, les préconditions et la protection de la collection. Vous coderez ces tests dans le projet de tests de l'exercice 3, sous le nom `DepotReservationsMemoireTests` après avoir introduit l'interface.
+1. Dans le fichier DECISIONS.md, choisir et justifier en une phrase chacun de ces besoins : titres dans l'ordre d'ajout avec doublons; réservation recherchée par numéro; numéros uniques sans tri requis. Comparer List<T>, Dictionary<TKey,TValue> et HashSet<T>.
+2. Prédire le nombre d'éléments d'une liste et d'un ensemble contenant 17,18,17; avec 17,18, prédire le premier retrait d'une Queue<T> et d'une Stack<T>. Lancer la démonstration avec `--collections` et comparer. Ne pas utiliser l'ordre d'un ensemble ou d'un dictionnaire comme garantie de tri.
+3. À l'oral, expliquer pourquoi une copie protège les cases de la collection, mais pas l'état d'éventuels objets mutables contenus. La classe Reservation fournie est immuable; le test de copie sera écrit à l'exercice 3.
 
-Point de contrôle : votre choix de collection et vos contrats sont écrits dans `CHOIX_COLLECTIONS.md`; aucun deuxième projet .NET à créer.
+Point de contrôle : trois choix justifiés et prédictions comparées aux sorties.
 
-<details>
-<summary>Rappel des semaines précédentes</summary>
+```bash
+dotnet run --project S07E03_Reservations.Terminal -- --collections
+```
 
-Revoir l'[encapsulation des collections en semaine 1](../semaine-01/README.md). API possibles : `Dictionary<TKey,TValue>`, `IReadOnlyCollection<T>`, `ToArray()`. Le client peut-il ajouter un élément sans passer par `CatalogueReservations.Ajouter`?
-
-</details>
+Exécuter depuis le dossier de la solution. Collections triées, liste chaînée, égalité personnalisée et parcours LINQ restent dans les supports de cours; aucune implantation de ces mécanismes n'est à ajouter ici.

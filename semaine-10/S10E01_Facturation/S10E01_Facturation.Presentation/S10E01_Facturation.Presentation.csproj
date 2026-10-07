@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net10.0</TargetFramework><LangVersion>14.0</LangVersion><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><RootNamespace>Commandes.Presentation</RootNamespace></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../S10E01_Facturation.Application/S10E01_Facturation.Application.csproj" /></ItemGroup>
+</Project>

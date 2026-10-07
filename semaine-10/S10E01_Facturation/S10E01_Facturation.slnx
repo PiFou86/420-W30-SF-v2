@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="S10E01_Facturation.Domaine/S10E01_Facturation.Domaine.csproj" />
+  <Project Path="S10E01_Facturation.Application/S10E01_Facturation.Application.csproj" />
+  <Project Path="S10E01_Facturation.Infrastructure/S10E01_Facturation.Infrastructure.csproj" />
+  <Project Path="S10E01_Facturation.Terminal/S10E01_Facturation.Terminal.csproj" />
+  <Project Path="S10E01_Facturation.WinForms/S10E01_Facturation.WinForms.csproj" />
+  <Project Path="S10E01_Facturation.Tests/S10E01_Facturation.Tests.csproj" />
+  <Project Path="S10E01_Facturation.Presentation/S10E01_Facturation.Presentation.csproj" />
+</Solution>

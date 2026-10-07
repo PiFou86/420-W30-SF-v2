@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="S07E03_Reservations/S07E03_Reservations.csproj" />
+  <Project Path="S07E03_Reservations.Terminal/S07E03_Reservations.Terminal.csproj" />
+  <Project Path="S07E03_Reservations.Tests/S07E03_Reservations.Tests.csproj" />
+</Solution>

@@ -2,22 +2,21 @@
 
 ## Mission et durée
 
-Environ 90 minutes. Réinvestissez `IDepotReservations` de la semaine 7 sans modifier ses clients.
+Environ 55 minutes. Réusinez la solution de la semaine 7 en conservant ses comportements. On ne découvre pas Infrastructure ni les fichiers cette semaine.
 
 ## Travail demandé
 
-1. Dans une nouvelle solution `S08E01_ReservationsFichier`, séparez les projets `Domaine`, `Application`, `Infrastructure`, `Terminal` et `Tests`. Le projet Terminal référence Application et Infrastructure; Infrastructure référence le projet qui porte `IDepotReservations`; le domaine ne référence aucun détail technique.
-2. Dans Infrastructure, implantez `DepotReservationsJson` avec `System.Text.Json`. Son constructeur refuse un chemin vide. La méthode `Ajouter` conserve la règle de doublon; `Obtenir` et `ObtenirToutes` conservent le contrat de la semaine 7.
-3. Décidez explicitement ce que signifie « fichier absent » et ce que signifie « fichier JSON illisible ». Testez ces deux cas séparément. Une option raisonnable est dépôt vide pour l'absence, exception technique conservée pour un contenu invalide.
-4. Dans le fichier `Program.cs` du projet Terminal, la méthode statique `Main(string[] args)` lit le chemin de données depuis `appsettings.json` via `Host.CreateApplicationBuilder(args)` ou `IConfiguration`, puis assemble le dépôt. Gardez la résolution du conteneur à la racine de composition.
-5. Dans le projet de tests, nommez la classe `DepotReservationsJsonTests`. Utilisez un répertoire temporaire propre à chaque test; testez l'aller-retour JSON, l'absence, le doublon et le contenu illisible. Ne testez pas le dépôt fichier avec Moq.
-6. Dans `DECISIONS.md`, décrivez comment une implantation YAML pourrait fournir le même contrat. N'ajoutez une bibliothèque YAML que si vous implantez réellement cette variante; comparez les formats sans changer l'interface.
+1. Copier votre état validé de `S07E03_Reservations` dans la solution cumulative `S08E01E03_ReservationsFichier`. Créer les projets `.Domaine`, `.Application`, `.Infrastructure`, `.Terminal` et `.Tests`, toujours .NET 10/C# 14. Conserver le numéro et le titre des réservations, l'API du dépôt, JSON/YAML, les décisions d'erreur et **tous** les tests antérieurs.
+2. Déplacer la classe `Reservation` dans le projet Domaine. Déplacer l'interface `IDepotReservations` dans Application, qui référence Domaine. Déplacer les dépôts mémoire, JSON et YAML, le DTO de persistance `ReservationDonnees` et la classe `JournalIncidents` dans Infrastructure, qui référence Application et Domaine. Déplacer la dépendance YamlDotNet dans Infrastructure seulement.
+3. Faire référencer Application et Infrastructure par Terminal, qui constitue la présentation et la racine de composition. Adapter les espaces de noms et le code appelant après chaque déplacement. Domaine ne référence aucun autre projet applicatif. Tests peut référencer les projets nécessaires à ses vérifications, y compris Terminal pour le ViewModel.
+4. Dans `DECISIONS.md`, distinguer les références nécessaires à la compilation, le choix des objets dans la racine de composition et les appels à l'exécution. Expliquer pourquoi le projet Terminal connaît Infrastructure pour construire les objets, alors que le service Application reçoit uniquement `IDepotReservations`.
+5. Conserver les deux modes d'assemblage manuel et cadriciel, la configuration et ses priorités. Réexécuter les tests après chaque déplacement puis comparer la sortie des deux modes avec le même fichier de données.
 
-Point de contrôle : le même code client doit pouvoir utiliser `DepotReservationsMemoire` ou `DepotReservationsJson`.
+Point de contrôle : `dotnet test S08E01E03_ReservationsFichier.slnx` réussit avant d'ajouter des comportements. Le même contrat est fourni par mémoire, JSON et YAML. Les tests construisent directement leur sujet; ils ne le résolvent pas avec le conteneur.
 
 <details>
-<summary>Rappel des semaines précédentes</summary>
+<summary>Rappel : persistance déjà pratiquée</summary>
 
-Revoir l'[assemblage par le cadriciel de la semaine 4](../semaine-04/README.md) et le [dépôt mémoire de la semaine 7](../semaine-07/E03-depot-memoire.md). API possibles : `Host.CreateApplicationBuilder`, `builder.Configuration`, `JsonSerializer`, `File.ReadAllText`. Où doit vivre le choix du chemin et de l'implantation?
+Revoir le [dépôt fichier et Git de la semaine 7](../semaine-07/E03-depot-memoire.md). API : `ProjectReference`, `RootNamespace`, `JsonSerializer`, `IDepotReservations`. Une référence de compilation signifie-t-elle que le service Application appelle une classe concrète d'Infrastructure?
 
 </details>

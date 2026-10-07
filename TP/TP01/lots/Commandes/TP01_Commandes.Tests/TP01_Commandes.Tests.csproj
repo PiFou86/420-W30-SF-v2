@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework><LangVersion>14.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+    <ProjectReference Include="../TP01_Commandes.Application/TP01_Commandes.Application.csproj" />
+    <ProjectReference Include="../TP01_Commandes.Domaine/TP01_Commandes.Domaine.csproj" />
+    <ProjectReference Include="../TP01_Commandes.Infrastructure/TP01_Commandes.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,24 +1,24 @@
 # Exercice 3
 
-## Mission et durée
+## Mission - 45 minutes
 
-Environ 75 minutes. Transformez le catalogue de l'exercice 2 en un dépôt de réservations dont le contrat ne révèle pas la collection choisie.
+Compléter le dépôt de réservations en mémoire dans la solution [S07E03_Reservations](S07E03_Reservations/README.md). Les trois projets .NET 10/C# 14, le contrat, la classe Reservation, le client et le Terminal sont fournis. Garder les noms et références de projets.
 
-## Travail demandé
+## Travail essentiel
 
-1. Créez la solution `S07E03_Reservations` avec le projet principal `S07E03_Reservations`, le projet `S07E03_Reservations.Terminal` et le projet `S07E03_Reservations.Tests`, tous ciblant .NET 10. Les projets Terminal et Tests référencent le projet principal; celui-ci ne référence aucun des deux.
-2. Placez la classe `Reservation` dans le projet principal. Implantez les préconditions et les cas de test préparés à l'exercice 1.
-3. Définissez l'interface `IDepotReservations` avec `Ajouter(Reservation reservation)`, `Obtenir(int numero)` et `ObtenirToutes()`. Documentez le refus des doublons et le retour `null` pour une absence.
-4. À partir de l'esquisse de `CatalogueReservations` réalisée à l'exercice 2, créez la classe `DepotReservationsMemoire` et faites-lui implanter l'interface. Reprenez les préconditions, le refus des doublons et la protection de la collection décidés plus tôt.
-5. Dans la méthode statique `Main` de la classe `Program` du projet Terminal, créez explicitement le dépôt et deux réservations, puis affichez le résultat avec `Console.Out.WriteLine`. Aucune instruction de haut niveau.
-6. Dans le projet de tests, codez les cas préparés en `ReservationTests`, `ReservationIntrouvableExceptionTests` et `DepotReservationsMemoireTests`. Vérifiez les préconditions, doublons, recherche et copie de collection. Utilisez de vrais objets, sans Moq ni conteneur.
-7. Dans `DECISIONS.md`, expliquez pourquoi le client dépend de `IDepotReservations` et pourquoi une interface générique `IRepository<T>` serait prématurée ici.
+1. Dans la bibliothèque principale, compléter les trois méthodes de la classe DepotReservationsMemoire avec un Dictionary<int,Reservation> privé nommé avec le préfixe m_. Le contrat IDepotReservations est fourni; ne pas exposer le dictionnaire.
+2. Respecter ce contrat : Ajouter refuse null avec ArgumentNullException et un doublon avec InvalidOperationException, sans remplacer le premier objet; Obtenir refuse un numéro non positif avec ArgumentOutOfRangeException et retourne null pour un numéro positif absent; ObtenirToutes rend une copie indépendante de la structure interne, sans ordre garanti. Les réservations sont immuables.
+3. Dans le projet Tests, conserver les cas de l'exercice 1 et couvrir **six cas du dépôt** : ajout retrouvé; numéro positif absent; ajout nul refusé; numéro 0 refusé; doublon refusé avec premier objet conservé; modification d'une case de la copie sans changement du dépôt. Construire directement de vrais objets, sans conteneur ni Moq.
+4. Lancer le mode `--depot` du Terminal fourni. Il construit manuellement le dépôt, ajoute deux réservations et montre une recherche trouvée et une recherche absente. En une phrase dans DECISIONS.md, expliquer ce qui reste après l'arrêt du programme.
 
-Point de contrôle : `dotnet test S07E03_Reservations.slnx` doit réussir. La sérialisation JSON/YAML n'est pas demandée cette semaine.
+```bash
+dotnet build S07E03_Reservations.slnx
+dotnet test S07E03_Reservations.slnx
+dotnet run --project S07E03_Reservations.Terminal -- --depot
+```
 
-<details>
-<summary>Rappel des semaines précédentes</summary>
+Exécuter depuis le dossier de la solution. Point de contrôle : contrat vérifié, six cas du dépôt réussis et Terminal exécuté. Le constructeur simple de l'exception, ses deux cas et les quatre cas fournis sur Reservation donnent douze cas essentiels au total.
 
-Revoir l'[injection et le point de composition en semaine 3](../semaine-03/README.md). Types/API utiles : interface, constructeur, `Dictionary<int, Reservation>`. Quel objet décide de l'implantation concrète, et quel objet se limite au contrat?
+La classe ConsultationReservations, la trace et l'assemblage sont fournis : ne pas les reconstruire ni produire une deuxième démonstration. Tests de cause et de copie après ajout ultérieur, comparaison de deux dépôts et démonstrations Git supplémentaires ne sont pas demandés. Les notions plus avancées restent disponibles dans le corrigé de référence.
 
-</details>
+Ce parcours prépare l'amorce du [TP01](../TP/TP01/ENONCE.md), avec un lot autonome par personne. Continuer ensuite le domaine et le dépôt mémoire de son lot. Réinvestir Git dans ce travail selon les règles déjà connues, sans créer une activité Git distincte pour cet exercice. JSON/YAML et les quatre couches sont prévus en S8.

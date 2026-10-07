@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net10.0</TargetFramework><LangVersion>14.0</LangVersion><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><RootNamespace>Reservations.Application</RootNamespace></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../TP01_Reservations.Domaine/TP01_Reservations.Domaine.csproj" /></ItemGroup>
+</Project>

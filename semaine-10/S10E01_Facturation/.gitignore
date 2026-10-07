@@ -1,0 +1,5 @@
+**/bin/
+**/obj/
+**/TestResults/
+*.log
+/S10E01_Facturation.WinForms/commandes.json
