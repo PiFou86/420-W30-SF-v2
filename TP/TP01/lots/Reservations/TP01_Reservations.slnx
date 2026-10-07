@@ -1,7 +1,0 @@
-<Solution>
-  <Project Path="TP01_Reservations.Domaine/TP01_Reservations.Domaine.csproj" />
-  <Project Path="TP01_Reservations.Application/TP01_Reservations.Application.csproj" />
-  <Project Path="TP01_Reservations.Infrastructure/TP01_Reservations.Infrastructure.csproj" />
-  <Project Path="TP01_Reservations.Terminal/TP01_Reservations.Terminal.csproj" />
-  <Project Path="TP01_Reservations.Tests/TP01_Reservations.Tests.csproj" />
-</Solution>

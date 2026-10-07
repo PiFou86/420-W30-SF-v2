@@ -1,7 +1,0 @@
-<Solution>
-  <Project Path="TP01_Commandes.Domaine/TP01_Commandes.Domaine.csproj" />
-  <Project Path="TP01_Commandes.Application/TP01_Commandes.Application.csproj" />
-  <Project Path="TP01_Commandes.Infrastructure/TP01_Commandes.Infrastructure.csproj" />
-  <Project Path="TP01_Commandes.Terminal/TP01_Commandes.Terminal.csproj" />
-  <Project Path="TP01_Commandes.Tests/TP01_Commandes.Tests.csproj" />
-</Solution>
