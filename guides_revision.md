@@ -8,5 +8,5 @@
 | **Semaine 4** | Substitution d’une dépendance par une abstraction, application de DI et DIP, SRP, CQS et loi de Déméter | [Guide de révision – S4](semaine-04/Guide_revision_active_S4.md) |
 | **Semaine 5** | Tell Don’t Ask, OCP, LSP, ISP, héritage vs composition et patron Strategy | [Guide de révision – S5](semaine-05/Guide_revision_active_S5.md) |
 | **Semaine 6** | Révision générale et préparation à l’examen 1 | [Guide de révision – S6](semaine-06/Guide_revision_active_S6.md) |
-| **Semaine 7** | Exceptions simples et personnalisées, collections, Repository en mémoire et distribution TP01 | [Guide de révision – S7](semaine-06/Guide_revision_active_S7.md) |
+| **Semaine 7** | Exceptions simples et personnalisées, collections, Repository en mémoire et distribution TP01 | [Guide de révision – S7](semaine-07/Guide_revision_active_S7.md) |
 
