@@ -9,4 +9,3 @@ Pour une équipe de trois seulement, ajouter une ligne Réservations, `JOURNAL_E
 
 - Taille de l'équipe et attribution approuvées par l'enseignant :
 - Commit final commun :
-- Répartition des conventions, du diagramme et des revues :

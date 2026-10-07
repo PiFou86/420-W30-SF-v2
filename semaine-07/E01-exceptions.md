@@ -1,27 +1,72 @@
 # Exercice 1
 
-## Mission - 15 minutes
+## But et durée - 15 minutes
 
-Prédire une exécution et compléter une exception personnalisée simple dans le [départ](S07E03_Reservations/README.md). La classe Reservation, la méthode Tracer de la classe ParcoursExceptions et la surcharge d'exception avec une cause sont fournies; ne pas les réécrire.
+Prédire le parcours d'une exception standard, puis compléter le constructeur d'une exception personnalisée. Utiliser la solution existante [S07E03_Reservations.slnx](S07E03_Reservations/S07E03_Reservations.slnx), partagée par les trois exercices.
 
-## Travail essentiel
+## Fichiers à utiliser
 
-1. Sans exécuter, prédire la trace de la méthode Tracer avec les numéros 17 et 0. Lancer ensuite le Terminal avec `--exceptions`; expliquer pourquoi « créée » manque en cas d'échec et pourquoi finally n'est pas un catch.
-2. Dans la bibliothèque principale, compléter **seulement le constructeur à un paramètre** de la classe ReservationIntrouvableException. Le message et l'appel à base sont déjà fournis : refuser un numéro non positif avec ArgumentOutOfRangeException, puis conserver le numéro dans la propriété Numero.
-3. Dans le projet Tests, ajouter deux cas : le numéro 17 est conservé; le numéro 0 est refusé avec le paramètre `numero`. Construire directement les objets. En une phrase, distinguer une recherche ordinaire absente, représentée par null, d'un objet annoncé connu mais manquant, signalé par ce type personnalisé dans le parcours strict fourni.
+Les chemins de ce tableau partent du dossier de solution `semaine-07/S07E03_Reservations/`.
 
-Point de contrôle : prédiction vérifiée et deux nouveaux tests réussis. Les quatre cas fournis sur Reservation restent inchangés. L'écriture de la trace, la gestion d'InnerException et les tests supplémentaires des autres valeurs ne sont pas demandés dans le parcours allégé.
+| Fichier | Action |
+| --- | --- |
+| `DECISIONS.md` | Remplir la section Exercice 1 |
+| `S07E03_Reservations/ParcoursExceptions.cs` | Lire la méthode Tracer, sans la modifier |
+| `S07E03_Reservations/ReservationIntrouvableException.cs` | Modifier le constructeur qui reçoit seulement `int numero` |
+| `S07E03_Reservations.Tests/ReservationIntrouvableExceptionTests.cs` | Créer ce fichier pour les deux nouveaux tests |
+
+La classe Reservation, la trace, le Terminal et le constructeur `ReservationIntrouvableException(int numero, Exception? cause)` sont fournis.
+
+## 1. Prédire, puis comparer
+
+Dans les deux lignes du tableau Exercice 1 de `DECISIONS.md`, écrire **avant le lancement** la liste ordonnée des libellés que la méthode `ParcoursExceptions.Tracer` ajoutera pour 17, puis pour 0. Il s'agit des libellés de la liste retournée, sans les préfixes « Trace valide » et « Trace invalide » du Terminal.
+
+Lancer ensuite le mode `--exceptions`, puis remplir la colonne « Observé ». Sous le tableau, répondre en une phrase à chacune des deux questions :
+
+- Pourquoi le libellé « créée » n'est-il pas ajouté quand le numéro vaut 0?
+- Quelle différence entre le rôle de catch et celui de finally?
+
+Ce mode appelle le constructeur de **Reservation** et montre une exception standard. Il fonctionne déjà dans le départ et ne vérifie pas votre exception personnalisée.
+
+## 2. Compléter un seul constructeur
+
+Dans `ReservationIntrouvableException.cs`, modifier uniquement le corps du constructeur `ReservationIntrouvableException(int numero)` :
+
+- remplacer sa ligne `throw new NotImplementedException();`;
+- si `numero <= 0`, lancer **ArgumentOutOfRangeException** en indiquant le nom du paramètre `numero`;
+- si `numero > 0`, affecter cette valeur à la propriété **Numero**. La construction doit alors réussir.
+
+Conserver la signature, la propriété, le message et l'appel à base déjà fournis. Ne pas modifier le constructeur à deux paramètres.
+
+Un numéro valide permet de **créer l'objet exception**; le constructeur ne doit pas lancer lui-même ReservationIntrouvableException. Le code appelant pourra lancer cet objet lorsqu'il signale une anomalie.
+
+## 3. Écrire deux tests
+
+Créer la classe `ReservationIntrouvableExceptionTests` dans le fichier de tests indiqué. Reprendre les imports `Reservations` et `Xunit`, l'espace de noms et la structure `[Fact]`/AAA du fichier fourni `ReservationFournieTests.cs`. Construire les objets directement.
+
+| Cas | Action à tester | Vérification attendue |
+| --- | --- | --- |
+| Numéro valide | Construire `ReservationIntrouvableException` avec 17 | La construction réussit et sa propriété `Numero` vaut 17 |
+| Numéro invalide | Construire **la même classe** avec 0 | `Assert.Throws<ArgumentOutOfRangeException>` renvoie l'erreur levée; sa propriété `ParamName` vaut la chaîne `"numero"` |
+
+`ParamName` est la propriété de l'erreur ArgumentOutOfRangeException capturée; ce n'est ni le message affiché ni la propriété Numero de votre type personnalisé. Ne pas retester ici le constructeur de Reservation.
+
+Dans `DECISIONS.md`, compléter aussi la phrase qui distingue une recherche normalement absente d'un objet annoncé connu mais manquant. La classe ConsultationReservations et son parcours strict Exiger sont fournis; aucune implantation de ce client n'est demandée.
+
+## Vérifier et terminer
+
+Depuis le dossier contenant `S07E03_Reservations.slnx` :
 
 ```bash
 dotnet run --project S07E03_Reservations.Terminal -- --exceptions
-dotnet test S07E03_Reservations.slnx
+dotnet test S07E03_Reservations.slnx --filter FullyQualifiedName~ReservationIntrouvableExceptionTests
 ```
 
-Exécuter depuis le dossier de la solution.
+Terminé lorsque la section Exercice 1 est renseignée et que les **deux nouveaux tests** passent. Un résultat de quatre cas lors du lancement de la suite complète correspond aux tests déjà fournis, pas aux tests demandés ici. Les traces et la gestion de la cause ne sont pas à réécrire.
 
 <details>
 <summary>Rappel : tests AAA</summary>
 
-[Semaine 2](../semaine-02/README.md). API : Assert.Throws<T>, Assert.Equal, ParamName et nameof. Quel invariant protège le numéro positif?
+[Tests de la semaine 2](../semaine-02/README.md). API : Assert.Throws<T>, Assert.Equal, ParamName et nameof. Le nom du paramètre dans le code se distingue de sa valeur lors de l'appel.
 
 </details>

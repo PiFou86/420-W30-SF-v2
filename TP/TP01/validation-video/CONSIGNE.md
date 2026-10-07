@@ -9,4 +9,4 @@ Durée maximale : **5 minutes**. Le contenu après cinq minutes n'est pas évalu
 5. Un test propre au lot exécuté et expliqué — 45 s.
 6. Commit/PR, contribution commune et aide déclarée au journal — 15 s.
 
-Le lot doit pouvoir fonctionner sans celui d'un coéquipier; ne pas présenter seulement la solution d'équipe. Publier sur YouTube en mode non répertorié et ajouter le lien et le commit au journal. Remettre aussi le lien sur Léa 48 heures avant le code final; conserver la vidéo accessible six mois après la fin du TP.
+Le lot doit pouvoir fonctionner sans celui d'un coéquipier; ne pas présenter seulement la solution d'équipe. Publier sur YouTube en mode non répertorié et ajouter le lien et le commit au journal. Conserver la vidéo accessible six mois après la fin du TP.

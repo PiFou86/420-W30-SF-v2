@@ -7,7 +7,9 @@ public sealed class ReservationIntrouvableException : Exception
     public ReservationIntrouvableException(int numero)
         : base($"Réservation {numero} introuvable.")
     {
-        // Exercice 1 : vérifier le numéro positif et conserver Numero.
+        // Exercice 1 : remplacer cette levée par la précondition et l'affectation.
+        // numero <= 0 : ArgumentOutOfRangeException, paramètre numero.
+        // numero > 0 : construction réussie, Numero reçoit numero.
         throw new NotImplementedException();
     }
 
