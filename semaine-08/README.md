@@ -27,8 +27,6 @@ Appliquer les conventions de branches du cours (`dev`, puis
 `fonctionnalite/persistance-s8`) et vérifier avant/après fusion; la procédure est
 rappelée dans la fiche Git de semaine 3. Aucune production Git supplémentaire n'est demandée.
 
-Après les 30 minutes, poursuivre la persistance de votre lot du TP01 avec son énoncé :
-[README](../../TPs/420-W30-SF-v2-TP01/README.md),
-[lots](../../TPs/420-W30-SF-v2-TP01/LOTS.md) et
-[grille](../../TPs/420-W30-SF-v2-TP01/GRILLE.md).
+Après les 30 minutes, poursuivre la persistance de votre lot du TP01.
+
 Les modalités de remise sont sur la plateforme d'enseignement.
