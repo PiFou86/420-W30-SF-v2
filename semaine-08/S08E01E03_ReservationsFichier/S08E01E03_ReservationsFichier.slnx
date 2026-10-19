@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="S08E01E03_ReservationsFichier.Domaine/S08E01E03_ReservationsFichier.Domaine.csproj" />
+  <Project Path="S08E01E03_ReservationsFichier.Application/S08E01E03_ReservationsFichier.Application.csproj" />
+  <Project Path="S08E01E03_ReservationsFichier.Infrastructure/S08E01E03_ReservationsFichier.Infrastructure.csproj" />
+  <Project Path="S08E01E03_ReservationsFichier.Terminal/S08E01E03_ReservationsFichier.Terminal.csproj" />
+  <Project Path="S08E01E03_ReservationsFichier.Tests/S08E01E03_ReservationsFichier.Tests.csproj" />
+</Solution>

@@ -2,21 +2,42 @@
 
 ## Mission et durée
 
-Environ 35 minutes. Dans la solution cumulative de l'exercice 1, orchestrez un cas d'utilisation sans déplacer les règles du domaine vers l'écran.
+**10 minutes.** Observer un incident technique et retrouver les responsabilités.
+Utiliser le même départ après les exercices 1 et 2. Ne modifier aucun fichier C#.
 
 ## Travail demandé
 
-1. Dans Application, créer `ReservationDto` de sortie (numéro, titre) avec un constructeur recevant une entité `Reservation` non nulle. L'entité ne connaît pas ce DTO. Son constructeur de valeurs refuse aussi un numéro non positif et un titre nul/vide/blanc.
-2. Dans Application, créer `ServiceReservations` recevant un `IDepotReservations` non nul. La méthode `Obtenir(int numero)` conserve une précondition de numéro positif et retourne `ReservationDto?`. Ajouter `TenterAjouter(int numero, string titre)` : numéro non positif, titre invalide et numéro déjà présent retournent `Result<ReservationDto>.Echec`, **sans appeler** la méthode `Ajouter` du dépôt; un ajout valide retourne `Succes` avec le DTO. Réutiliser les membres `EstSucces`, `Valeur`, `MessageErreur`, `Succes(...)` et `Echec(...)` du mécanisme déjà étudié. Une erreur technique du dépôt se propage jusqu'à la frontière prévue. Les fabriques du résultat refusent une valeur nulle pour `Succes` et un message nul/vide/blanc pour `Echec`.
-3. Dans Terminal, créer `ReservationViewModel` recevant un DTO non nul, avec `Libelle` et `EtatAffiche` adaptés à la vue. Adapter les deux modes d'assemblage pour construire le même service, puis convertir son DTO en ViewModel. Conserver le message sûr et le journal de semaine 7. L'écran ne lit pas JSON et ne décide pas d'un invariant.
-4. Ajouter des tests avec de vrais objets pour les conversions et le ViewModel, puis une doublure manuelle de `IDepotReservations` pour observer les appels du service : succès = un ajout; refus = aucun ajout; incident technique ≠ refus métier. Vérifier les frontières publiques et conserver tous les tests antérieurs, y compris mémoire, JSON et YAML. Construire directement le sujet testé.
-5. Dans `DECISIONS.md`, identifier une responsabilité à réusiner dans le TP01 : invariant, cas d'utilisation, accès fichier ou affichage. Avant/après, vérifier le même comportement. Un dépôt qui relit/réécrit le fichier n'offre ni transaction ni protection contre deux écrivains concurrents; ne pas promettre ces garanties.
+Depuis `semaine-08/S08E01E03_ReservationsFichier` :
 
-Point de contrôle : tests verts, affichage identique dans les deux modes et aucune dépendance du domaine vers DTO, fichier ou interface utilisateur. Le résultat expose une valeur seulement en cas de succès; la consultation de `Valeur` en échec doit lever `InvalidOperationException`.
+1. Prédire oralement la sortie avec le fichier fourni `donnees-exemples/invalide.json`,
+   qui contient `{invalide`. Lancer :
 
-<details>
-<summary>Rappel : couche et objet de transport</summary>
+```bash
+dotnet run --project S08E01E03_ReservationsFichier.Terminal -- --Donnees:Chemin=invalide.json
+```
 
-Revoir le [classement des responsabilités](./E02-couches-dto.md). Pourquoi un objet de transfert ne doit-il pas rendre une entité invalide possible, même si le service accepte une saisie invalide comme refus attendu?
+2. Vérifier le message utilisateur : il signale l'impossibilité de charger les
+   réservations sans afficher de trace d'appel ni de chemin complet. L'exécution
+   termine avec le code 1 : c'est le résultat attendu de cette manipulation.
+3. Ouvrir `reservations.log` dans
+   `S08E01E03_ReservationsFichier.Terminal/bin/Debug/net10.0/`. Repérer la date,
+   l'opération et la catégorie `JsonException`. Ouvrir `invalide.json` dans le même
+   dossier : son contenu doit rester `{invalide`, pas être remplacé par `[]`.
+4. Compléter les **quatre lignes** de `DECISIONS.md`, une par couche, en associant :
+   l'entité `Reservation`; le service et son contrat; le dépôt JSON et son DTO de
+   persistance; l'affichage et le ViewModel. Ajouter à chaque ligne son rôle en
+   quelques mots. Aucun diagramme ni nouvelle classe à produire.
+5. Relancer la commande JSON normale de l'exercice 2, puis les tests fournis :
 
-</details>
+```bash
+dotnet test S08E01E03_ReservationsFichier.slnx
+```
+
+## Terminé quand
+
+Le fichier invalide reste intact, le journal est distinct des données, le message
+est sûr, les quatre responsabilités sont classées et les tests fournis passent.
+
+Les **30 minutes d'exercices sont terminées**. Passer au dépôt JSON de votre propre
+lot du TP01 : mêmes questions de sauvegarde/relecture, de configuration et d'incidents,
+avec les règles et données de l'énoncé officiel.

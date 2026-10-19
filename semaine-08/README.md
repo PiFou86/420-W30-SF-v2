@@ -1,13 +1,34 @@
-# Semaine 8 — Architecture en couches et réusinage du TP01
+# Semaine 8 - Fichiers, configuration et couches
 
-| Étape | Activité | Durée indicative |
+| Activité | Travail ciblé | Durée indicative |
 |---|---|---:|
-| [Exercice 1](./E01-depot-fichier.md) | Répartir la solution de semaine 7 dans quatre couches | 55 min |
-| [Exercice 2](./E02-couches-dto.md) | Corriger les responsabilités et les conversions | 25 min |
-| [Exercice 3](./E03-viewmodel-erreurs.md) | DTO, refus attendu, ViewModel et tests de non-régression | 35 min |
+| [Exercice 1](E01-depot-fichier.md) | Compléter deux points du dépôt JSON; vérifier la relecture | 15 min |
+| [Exercice 2](E02-couches-dto.md) | Choisir le format et le chemin par configuration | 5 min |
+| [Exercice 3](E03-viewmodel-erreurs.md) | Diagnostiquer un fichier invalide et situer les responsabilités | 10 min |
+| **Total** | **Puis travail accompagné sur le TP01** | **30 min** |
 
-Les séances 15 et 16 consolident l'architecture déjà introduite : présentation / Application / domaine / Infrastructure. La persistance JSON/YAML et la configuration ont été pratiquées en semaine 7; elles sont conservées pendant le réusinage. Le reste des séances est consacré à l'accompagnement et au réusinage du TP01. Son énoncé et ses modalités de remise demeurent sur la plateforme d'enseignement.
+La semaine 7 a traité le dépôt mémoire. JSON/YAML, configuration, incidents et
+journalisation sont introduits cette semaine. Aucun dépôt fichier antérieur n'est requis.
 
-Les exercices 1 et 3 partagent la solution cumulative `S08E01E03_ReservationsFichier`; l'exercice 2 produit une analyse en Markdown. Les noms historiques des fichiers d'énoncés restent stables. Travailler depuis `dev` dans `fonctionnalite/architecture`, avec les tests avant et après fusion.
+## Départ commun
 
-[Énoncé du TP01](../TP/TP01/README.md) · [Lots individuels](../TP/TP01/LOTS.md) · [Grille d’évaluation](../TP/TP01/GRILLE.md).
+Ouvrir [S08E01E03_ReservationsFichier](S08E01E03_ReservationsFichier/README.md).
+Les cinq projets, entités, conversions, service, ViewModel, configuration, dépôt YAML
+et tests sont fournis. Seuls deux points du dépôt JSON sont à compléter.
+**Aucun projet, classe ou test supplémentaire à écrire.** Ne pas recopier la semaine 7.
+
+Les trois activités utilisent ce départ; leurs anciens noms de fichiers sont conservés
+pour préserver les liens. Les réponses de l'exercice 3 tiennent en quatre lignes dans
+[DECISIONS.md](S08E01E03_ReservationsFichier/DECISIONS.md).
+
+## Git et TP01
+
+Appliquer les conventions de branches du cours (`dev`, puis
+`fonctionnalite/persistance-s8`) et vérifier avant/après fusion; la procédure est
+rappelée dans la fiche Git de semaine 3. Aucune production Git supplémentaire n'est demandée.
+
+Après les 30 minutes, poursuivre la persistance de votre lot du TP01 avec son énoncé :
+[README](../../TPs/420-W30-SF-v2-TP01/README.md),
+[lots](../../TPs/420-W30-SF-v2-TP01/LOTS.md) et
+[grille](../../TPs/420-W30-SF-v2-TP01/GRILLE.md).
+Les modalités de remise sont sur la plateforme d'enseignement.
