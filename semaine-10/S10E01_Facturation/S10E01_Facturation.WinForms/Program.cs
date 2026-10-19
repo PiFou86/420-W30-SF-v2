@@ -33,12 +33,15 @@ internal static class Program
 
             IDepotCommandes CreerDepot()
             {
-                return format.ToLowerInvariant() switch
+                switch (format.ToLowerInvariant())
                 {
-                    "memoire" => new DepotCommandesMemoire(),
-                    "json" => new DepotCommandesJson(chemin),
-                    _ => throw new InvalidOperationException("Format inconnu.")
-                };
+                    case "memoire":
+                        return new DepotCommandesMemoire();
+                    case "json":
+                        return new DepotCommandesJson(chemin);
+                    default:
+                        throw new InvalidOperationException("Format inconnu.");
+                }
             }
 
             if ((builder.Configuration["assemblage"] ?? "manuel") == "manuel")

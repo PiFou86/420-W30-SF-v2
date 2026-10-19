@@ -67,13 +67,17 @@ internal static class Program
 
     private static IDepotReservations CreerDepot(string format, string chemin)
     {
-        return format.ToLowerInvariant() switch
+        switch (format.ToLowerInvariant())
         {
-            "json" => new DepotReservationsJson(chemin),
-            "yaml" => new DepotReservationsYaml(chemin),
-            "memoire" => new DepotReservationsMemoire(),
-            _ => throw new InvalidOperationException("Format de dépôt inconnu.")
-        };
+            case "json":
+                return new DepotReservationsJson(chemin);
+            case "yaml":
+                return new DepotReservationsYaml(chemin);
+            case "memoire":
+                return new DepotReservationsMemoire();
+            default:
+                throw new InvalidOperationException("Format de dépôt inconnu.");
+        }
     }
 
     private static void Afficher(ServiceReservations service)
