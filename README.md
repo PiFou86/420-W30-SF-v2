@@ -24,6 +24,13 @@ exemples de code.
 
 > [!TIP]
 >
+> Exemples des notes de cours :
+> Les exemples des notes de cours sont disponibles dans un dépôt. Les exemples
+> sont organisés par chapitre.
+> [Exemples des notes de cours](https://github.com/PiFou86/notes_POOII_exemples).
+
+> [!TIP]
+>
 > Exercices supplémentaires :
 > les notes de cours contiennent aussi de courts exercices facultatifs. Ils
 > permettent de mettre rapidement en pratique une notion du chapitre et ne sont
