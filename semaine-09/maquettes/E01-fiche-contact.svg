@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="310" viewBox="0 0 850 310">
+<rect width="850" height="100%" fill="#f5f7fa"/>
+<style>text{font-family:Arial,sans-serif;font-size:17px;fill:#213145}.hint{font-size:13px;fill:#536477}</style>
+<rect x="14" y="14" width="822" height="38" rx="5" fill="#244c70"/>
+<text x="30" y="40" style="fill:white;font-weight:bold">Contacts — maquette E1</text>
+<text x="32" y="91" class="">Nom</text>
+<rect x="150" y="66" width="650" height="36" rx="3" fill="white" stroke="#9bacbc"/>
+<text x="164" y="91" class="hint">tbNom</text>
+<text x="32" y="141" class="">Courriel</text>
+<rect x="150" y="116" width="650" height="36" rx="3" fill="white" stroke="#9bacbc"/>
+<text x="164" y="141" class="hint">tbCourriel</text>
+<rect x="150" y="167" width="145" height="38" rx="3" fill="#dfebf5" stroke="#9bacbc"/>
+<text x="162" y="192" class="">Créer · bCreer</text>
+<rect x="310" y="167" width="165" height="38" rx="3" fill="#dfebf5" stroke="#9bacbc"/>
+<text x="322" y="192" class="">Effacer · bEffacer</text>
+<text x="32" y="248" class="">État de l’opération — lEtat</text>
+<text x="32" y="285" class="hint">Interface à construire au designer; aucun accès JSON dans les événements.</text>
+</svg>

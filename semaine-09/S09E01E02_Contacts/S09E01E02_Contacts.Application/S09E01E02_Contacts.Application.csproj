@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Contacts.Application</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../S09E01E02_Contacts.Domaine/S09E01E02_Contacts.Domaine.csproj" />
+  </ItemGroup>
+</Project>

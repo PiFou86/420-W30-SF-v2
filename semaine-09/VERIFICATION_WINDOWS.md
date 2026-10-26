@@ -1,29 +1,49 @@
-# Vérification Windows — prise de commande
+# Vérifications — Contacts S9
 
-Ce protocole exige l'exécution native sous Windows. La compilation croisée et les tests sans fenêtre ne remplacent pas ces observations. Remplir les résultats, sans les présumer réussis.
+Ce protocole concerne le départ complété et les corrigés Contacts.
 
-- Windows / version .NET / Visual Studio :
-- Commit vérifié :
-- Mode d'assemblage et format du dépôt :
-- Taille de fenêtre et échelle d'affichage :
+Ouvrir `S09E01E02_Contacts.slnx` avec Visual Studio sous Windows et .NET 10. Utiliser un fichier de données de démonstration et noter, pour soi ou pour le suivi enseignant, l'état E1/E2, le mode (`manuel` ou `cadriciel`), la taille de fenêtre et l'échelle Windows. Aucun document supplémentaire n'est à remettre par l'étudiant.
 
-| Vérification | Résultat attendu | Observation / preuve |
-|---|---|---|
-| Numéro courant distinct de la saisie de nouvelle commande | Modifier la saisie ne renomme pas la commande courante | À vérifier |
-| Ajouter Soupe × 2, Sandwich × 1 | Deux lignes et total 22,00 | À vérifier |
-| Un seul clic Ajouter | Un seul ajout | À vérifier |
-| Quantité abc | Message de saisie et focus; lignes inchangées | À vérifier |
-| Quantité 0 ou négative | Refus attendu; lignes inchangées | À vérifier |
-| Commande vide / Enregistrer | Aucun ajout; action désactivée ou refus explicite | À vérifier |
-| Sauvegarde réussie | Statut enregistré après réussite; pas de second ajout | À vérifier |
-| Même numéro déjà au dépôt | Refus attendu, brouillon conservé | À vérifier |
-| Dépôt JSON indisponible ou corrompu lors de l’enregistrement | Message sûr, journal, brouillon conservé et nouvel essai possible | À vérifier |
-| Journal indisponible | Message sûr encore visible | À vérifier |
-| Annuler Nouvelle / fermeture avec brouillon | Lignes conservées; fermeture annulée | À vérifier |
-| Tabulation, touche d'accès, Entrée | Parcours compréhensible; action prévue | À vérifier |
-| Redimensionnement / échelle 150 % | Contrôles et messages accessibles | À vérifier |
-| Manuel puis cadriciel | Même comportement, portée correctement conservée | À vérifier |
+## E1 — les deux modes fournis
 
-Pour provoquer un incident avec le dépôt fourni, sélectionner le format JSON et un chemin dans un dossier d'entraînement. Utiliser un dossier absent, ou placer un JSON invalide à ce chemin avant Enregistrer. Le dépôt lit le fichier dans Obtenir et Ajouter, pas dans son constructeur : l'incident se produit pendant le cas d'utilisation et doit conserver les lignes. Corriger le dossier ou le contenu, puis réessayer. Le choix du dépôt appartient au point de composition. Ne pas altérer les fichiers d'une autre activité.
+- [ ] Le designer de `FormContacts` s'ouvre; le formulaire démarre avec les collaborateurs injectés.
+- [ ] Nom et courriel saisis : confirmation après écriture; le terminal ou une relecture confirme le contact.
+- [ ] Nom/courriel vide : refus; les champs restent présents.
+- [ ] Même courriel avec casse différente : refus, aucune deuxième ligne persistée.
+- [ ] Effacer vide les champs; focus au nom. Tab, Alt+touches d'accès et Entrée fonctionnent.
+- [ ] Un clic crée une seule fois; pas de double abonnement.
 
-Captures attendues : un cas normal et une saisie invalide. Noter les écarts et la correction avant de marquer la vérification réussie.
+## E2 — les deux modes fournis
+
+- [ ] Le designer ouvre le formulaire enrichi sans erreur. Les contrôles d'E1 sont conservés.
+- [ ] Liste vide au premier chargement, compteur cohérent; trois créations successives puis relecture après relancement.
+- [ ] Recherche par nom et courriel, casse différente et espaces extérieurs : résultats corrects.
+- [ ] Recherche vide/blanche : tous; introuvable : grille vide et « Aucun résultat ».
+- [ ] Tous annule le filtre. Créer pendant un filtre réaffiche tous et vide les trois champs.
+- [ ] Refus : saisie préservée. Grille en lecture seule, sans ligne d'ajout/suppression ni colonne identifiant.
+- [ ] Incident de lecture sur une copie de JSON volontairement malformée : message sûr, fichier conservé, ancienne grille non vidée. Réparer puis réessayer.
+- [ ] Incident de création : utiliser un chemin vers un dossier inexistant au lancement ou un emplacement non accessible; message sûr, saisie conservée; corriger puis relancer/réessayer. Le journal contient opération/type sans chemin ni trace brute.
+- [ ] Si l'enregistrement a réussi mais que la consultation suivante échoue, le message distingue création acquise et actualisation impossible (inspection du traitement puis simulation si possible).
+- [ ] Parcours clavier de création/recherche, focus, petite et grande fenêtre, échelle 100 % puis 150 % : rien d'utile n'est masqué.
+
+Rétablir les fichiers et la configuration après les simulations.
+
+## Aller-retour dans le designer
+
+- [ ] Sur une copie de travail, ouvrir chaque formulaire dans le designer;
+  vérifier que les contrôles et les colonnes attendus sont présents.
+- [ ] Déplacer légèrement un contrôle (ou ajouter un contrôle provisoire au
+  départ vide), enregistrer, fermer le designer puis le rouvrir.
+- [ ] Vérifier qu'il reste un seul champ `components`, sans champ `m_components`,
+  et que `Dispose` utilise ce même champ. Le conteneur peut rester nul tant
+  qu'aucun composant non visuel ne le nécessite.
+- [ ] Ajouter provisoirement un `Timer` depuis la boîte à outils : le designer
+  utilise le même conteneur `components`; supprimer ensuite ce composant d'essai.
+- [ ] Vérifier les noms, les dispositions, les valeurs, les colonnes et les
+  abonnements. Un premier enregistrement peut normaliser le code généré;
+  un deuxième aller-retour ne doit perdre aucun élément ni doubler un événement.
+- [ ] Rétablir la modification d'essai, compiler et lancer : chaque clic exécute
+  une seule action, les grilles restent en lecture seule et les dialogues
+  conservent leur validation, leur annulation et leur fenêtre propriétaire.
+
+Exécuter ce contrôle pour le départ et les deux états du corrigé `FormContacts`.

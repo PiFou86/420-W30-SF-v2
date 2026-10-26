@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="S09E01E02_Contacts.Domaine/S09E01E02_Contacts.Domaine.csproj" />
+  <Project Path="S09E01E02_Contacts.Application/S09E01E02_Contacts.Application.csproj" />
+  <Project Path="S09E01E02_Contacts.Infrastructure/S09E01E02_Contacts.Infrastructure.csproj" />
+  <Project Path="S09E01E02_Contacts.Terminal/S09E01E02_Contacts.Terminal.csproj" />
+  <Project Path="S09E01E02_Contacts.WinForms/S09E01E02_Contacts.WinForms.csproj" />
+  <Project Path="S09E01E02_Contacts.Tests/S09E01E02_Contacts.Tests.csproj" />
+</Solution>

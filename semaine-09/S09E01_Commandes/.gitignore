@@ -1,5 +1,0 @@
-**/bin/
-**/obj/
-**/TestResults/
-*.log
-/S09E01_Commandes.WinForms/commandes.json

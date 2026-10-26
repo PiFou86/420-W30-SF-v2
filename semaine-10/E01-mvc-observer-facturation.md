@@ -67,6 +67,6 @@ Point de contrôle : ouvrir la facture après une saisie affiche l’état coura
 <details>
 <summary>Rappels utiles</summary>
 
-Revoir [WinForms en S9](../semaine-09/E01-prise-commande-winforms.md), [DTO et erreurs en S8](../semaine-08/E03-viewmodel-erreurs.md) et la fiche Git de semaine 3 pour les branches. API à réinvestir : Result, DTO, IDisposable, injection par constructeur. Un changement d’affichage est-il un nouveau calcul métier?
+Revoir [WinForms en S9](../semaine-09/E02-gestion-contacts.md), [DTO et erreurs en S8](../semaine-08/E03-viewmodel-erreurs.md) et la fiche Git de semaine 3 pour les branches. API à réinvestir : Result, DTO, IDisposable, injection par constructeur. Un changement d’affichage est-il un nouveau calcul métier?
 
 </details>

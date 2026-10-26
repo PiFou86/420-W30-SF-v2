@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Contacts.Domaine</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+</Project>

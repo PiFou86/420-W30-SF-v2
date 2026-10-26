@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="590" viewBox="0 0 850 590">
+<rect width="850" height="100%" fill="#f5f7fa"/>
+<style>text{font-family:Arial,sans-serif;font-size:17px;fill:#213145}.hint{font-size:13px;fill:#536477}</style>
+<rect x="14" y="14" width="822" height="38" rx="5" fill="#244c70"/>
+<text x="30" y="40" style="fill:white;font-weight:bold">Contacts — maquette E2</text>
+<text x="32" y="91" class="">Nom</text>
+<rect x="150" y="66" width="650" height="36" rx="3" fill="white" stroke="#9bacbc"/>
+<text x="164" y="91" class="hint">tbNom</text>
+<text x="32" y="141" class="">Courriel</text>
+<rect x="150" y="116" width="650" height="36" rx="3" fill="white" stroke="#9bacbc"/>
+<text x="164" y="141" class="hint">tbCourriel</text>
+<rect x="150" y="167" width="145" height="38" rx="3" fill="#dfebf5" stroke="#9bacbc"/>
+<text x="162" y="192" class="">Créer · bCreer</text>
+<rect x="310" y="167" width="165" height="38" rx="3" fill="#dfebf5" stroke="#9bacbc"/>
+<text x="322" y="192" class="">Effacer · bEffacer</text>
+<text x="32" y="249" class="">Mot-clef</text>
+<rect x="150" y="223" width="300" height="36" rx="3" fill="white" stroke="#9bacbc"/>
+<text x="162" y="248" class="hint">tbMotClef</text>
+<rect x="466" y="223" width="194" height="36" rx="3" fill="#dfebf5" stroke="#9bacbc"/>
+<text x="478" y="248" style="font-size:14px">Rechercher · bRechercher</text>
+<rect x="675" y="223" width="125" height="36" rx="3" fill="#dfebf5" stroke="#9bacbc"/>
+<text x="687" y="248" class="">Tous · bTous</text>
+<rect x="32" y="278" width="768" height="210" rx="3" fill="white" stroke="#9bacbc"/>
+<rect x="33" y="279" width="766" height="35" fill="#dce7ef"/>
+<text x="48" y="303" class="">Nom</text>
+<text x="380" y="303" class="">Courriel</text>
+<text x="48" y="343" class="">Alex Roy</text>
+<text x="380" y="343" class="">alex@example.test</text>
+<text x="48" y="381" class="">Mia Tremblay</text>
+<text x="380" y="381" class="">mia@example.test</text>
+<path d="M360 278V488 M32 315H800 M32 355H800 M32 395H800" stroke="#c7d2dd" fill="none"/>
+<text x="48" y="459" class="hint">dgvContacts — lecture seule</text>
+<text x="32" y="520" class="">2 contact(s) — lNombre</text>
+<text x="32" y="554" class="">État de l’opération — lEtat</text>
+<text x="32" y="580" class="hint">Exemple de contenu; la liste réelle provient des DTO.</text>
+</svg>
