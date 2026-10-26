@@ -13,6 +13,6 @@ Le travail ramassé est **l'Exercice 2**. Consulter la plateforme pour les modal
 
 - [Observations à faire](VERIFICATION_WINDOWS.md)
 - [Guide de révision active](Guide_revision_active_S9.md)
-- [Grille d'autoévaluation](Grille_autoevaluation_S9.md)
+- [Grille d'autoévaluation](Grille_autoevaluation_S9_remplissable.pdf)
 
 Les diapositives et la démonstration enseignante conservent le contexte des commandes. Les exercices utilisent les contacts. La semaine 10 repart d'une solution autonome de facturation pour MVC et Observer.
