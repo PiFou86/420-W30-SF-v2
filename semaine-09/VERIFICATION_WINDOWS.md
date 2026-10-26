@@ -47,3 +47,31 @@ Rétablir les fichiers et la configuration après les simulations.
   conservent leur validation, leur annulation et leur fenêtre propriétaire.
 
 Exécuter ce contrôle pour le départ et les deux états du corrigé `FormContacts`.
+
+
+## Disposition avec Anchor — observations Windows restantes
+
+- [ ] Les contrôles sont directement sur le formulaire, sans panneau de disposition.
+- [ ] Agrandir puis réduire jusqu'à la taille minimale : les champs/grilles
+  ancrés à gauche et à droite s'élargissent; la grille ancrée aux quatre bords
+  change aussi de hauteur. Aucun contrôle ne se recouvre.
+- [ ] Les boutons et messages ancrés en bas ou à droite gardent leurs marges.
+- [ ] En Contacts, les champs et boutons d'E1 sont conservés dans E2; seule la
+  zone inférieure est enrichie par la recherche, la grille et le compteur.
+
+Ces observations restent à exécuter nativement sous Windows; aucune capture
+native ni validation du redimensionnement n'est présumée sous macOS.
+
+## Déclarations des colonnes après enregistrement du designer
+
+- [ ] Les champs de contrôles/colonnes sont déclarés sans `= null!`; leur création
+  se trouve dans `InitializeComponent` et utilise bien les champs, sans variable
+  locale du même nom.
+- [ ] Enregistrer puis rouvrir le designer : toutes les colonnes sont toujours
+  ajoutées à la grille; `AutoGenerateColumns` reste désactivé pour les grilles
+  explicites. Les noms de propriétés de liaison et formats sont conservés.
+- [ ] Recompiler sans avertissement de champ inutilisé; lancer et vérifier que
+  les colonnes Nom et Courriel sont affichées sans référence nulle.
+- [ ] Les métadonnées `UserAddedColumn=True` sont présentes dans le `.resx`
+  pour chaque colonne ajoutée manuellement; après deux enregistrements du
+  designer, aucune colonne ne disparaît et les champs ne deviennent pas inutilisés.

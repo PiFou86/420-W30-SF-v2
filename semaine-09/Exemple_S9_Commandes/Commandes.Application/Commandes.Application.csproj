@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- Bibliothèque portable. -->
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Commandes.Domaine/Commandes.Domaine.csproj" />
+  </ItemGroup>
+</Project>

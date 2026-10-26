@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Commandes.Application/Commandes.Application.csproj" />
+    <ProjectReference Include="../Commandes.Infrastructure/Commandes.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

@@ -4,7 +4,7 @@
 
 ## Périmètre et fichiers
 
-Continuer la solution `S09E01E02_Contacts.slnx` et la branche Git `fonctionnalite/contacts-winforms` utilisées en [E1](E01-fiche-contact.md).
+Continuer la solution [S09E01E02_Contacts.slnx](S09E01E02_Contacts/S09E01E02_Contacts.slnx) du dossier `semaine-09/S09E01E02_Contacts` et la branche Git `fonctionnalite/contacts-winforms` utilisées en [E1](E01-fiche-contact.md).
 
 - Présentation à compléter : `FormContacts.cs` et contrôles du designer, projet `S09E01E02_Contacts.WinForms`.
 - **Une seule méthode hors présentation à écrire :** `DepotContactsJson.Rechercher(string motClef)`, projet `S09E01E02_Contacts.Infrastructure`, bloc `E2-R`.
@@ -34,7 +34,7 @@ La garde `ArgumentNullException.ThrowIfNull` et la lecture JSON validée sont fo
 API utiles : `string.Contains(string, StringComparison)`, `Where`, `ToArray`. [Révision S1](../semaine-01/README.md). Question de diagnostic : tester seulement le nom couvre-t-il tous les cas du contrat?
 </details>
 
-Exécuter les tests `Etape=E2` fournis selon le [README](S09E01E02_Contacts/README.md). Ils doivent maintenant réussir, ainsi que ceux d'E1.
+Dans l'**Explorateur de tests de Visual Studio**, sélectionner les tests du groupe `E2` (trait `Etape`) et les exécuter. Les neuf cas de recherche doivent maintenant réussir.
 
 ## 2. Enrichir l'interface — 80 min
 
@@ -53,7 +53,14 @@ Garder la zone de création d'E1. Ajouter :
 
 Définir la grille en lecture seule : `ReadOnly=true`, `AllowUserToAddRows=false`, `AllowUserToDeleteRows=false`. Utiliser deux colonnes explicites (`DataPropertyName` : `Nom`, `Courriel`) avec `AutoGenerateColumns=false`, ou une projection de DTO ne contenant que ces deux propriétés. Ne pas afficher l'identifiant technique.
 
-Organiser les zones création / recherche / résultats / état. La grille occupe l'espace disponible, les champs restent utilisables quand la fenêtre change de taille. Prévoir les libellés, un ordre de tabulation cohérent et les touches d'accès. Une confirmation ou erreur reste compréhensible sans couleur.
+Conserver les contrôles d'E1 sur le formulaire et agrandir celui-ci pour ajouter la recherche et les résultats. Poursuivre avec `Anchor` :
+
+- `tbMotClef` : `Top, Left, Right`.
+- `bRechercher` et `bTous` : `Top, Right`.
+- `dgvContacts` : `Top, Bottom, Left, Right` pour utiliser l'espace disponible.
+- `lNombre` et `lEtat` : `Bottom, Left, Right`.
+
+Garder les libellés, un ordre de tabulation cohérent et les touches d'accès. Une confirmation ou erreur reste compréhensible sans couleur. Il n'est pas demandé d'introduire un conteneur de disposition.
 
 ## 3. Raccorder les événements — 80 min
 
@@ -73,7 +80,11 @@ Après un refus ou un incident de création, préserver les champs. Après un in
 
 ## 4. Vérifier — 40 min
 
-Utiliser les tests existants puis réaliser sous Windows :
+Dans **Visual Studio**, générer la solution puis exécuter tous les tests dans l'Explorateur de tests. Les **34 tests** doivent réussir : les 25 tests E1 et les neuf cas E2. Aucun échec n'est attendu après la réalisation de `E2-R`.
+
+Définir `S09E01E02_Contacts.WinForms` comme projet de démarrage et lancer avec **Démarrer**, sans argument supplémentaire. Le terminal et WinForms utilisent des fichiers distincts par défaut, dans le dossier de leur exécutable respectif.
+
+Réaliser ensuite sous Windows :
 
 1. Ouvrir avec un dépôt vide; créer au moins trois contacts; fermer et relancer pour vérifier la relecture.
 2. Chercher par nom, par courriel, avec casse différente, puis avec espaces aux extrémités.
@@ -85,6 +96,21 @@ Utiliser les tests existants puis réaliser sous Windows :
 
 ## 5. Marge et remise — 20 min
 
-Compiler la solution complète; exécuter tous les tests fournis. Vérifier les modifications, puis intégrer la branche de fonctionnalité dans `dev` selon les consignes Git antérieures et les modalités de la plateforme. Ne pas inclure `bin`, `obj`, les fichiers de données personnels ou les journaux. Aucun rapport supplémentaire n'est demandé.
+Vérifier les modifications, puis intégrer la branche de fonctionnalité dans `dev` selon les consignes Git antérieures et les modalités de la plateforme. Ne pas inclure `bin`, `obj`, les fichiers de données personnels ou les journaux. Aucun rapport supplémentaire n'est demandé.
 
 **Fin observable :** une fiche conservée d'E1, une liste de contacts persistés, une recherche par nom ou courriel et un compteur cohérent; une seule méthode du dépôt a été ajoutée hors présentation.
+
+<details>
+<summary>Si vous préférez la ligne de commande — facultatif</summary>
+
+Depuis le dossier `semaine-09/S09E01E02_Contacts`, qui contient la solution `.slnx` :
+
+```bash
+dotnet build S09E01E02_Contacts.slnx
+dotnet test S09E01E02_Contacts.slnx
+dotnet run --project S09E01E02_Contacts.WinForms
+```
+
+Ces commandes remplacent les manipulations dans Visual Studio; il n'est pas demandé de faire les deux.
+
+</details>

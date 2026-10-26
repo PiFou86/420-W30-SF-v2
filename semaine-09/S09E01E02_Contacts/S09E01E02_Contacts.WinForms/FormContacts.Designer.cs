@@ -1,9 +1,9 @@
-#nullable enable
+#nullable disable
 namespace Contacts.WinForms;
 
 partial class FormContacts
 {
-    private System.ComponentModel.IContainer? components = null;
+    private System.ComponentModel.IContainer components = null;
 
     protected override void Dispose(bool disposing)
     {

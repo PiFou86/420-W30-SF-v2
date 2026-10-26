@@ -32,5 +32,5 @@
 <text x="48" y="459" class="hint">dgvContacts — lecture seule</text>
 <text x="32" y="520" class="">2 contact(s) — lNombre</text>
 <text x="32" y="554" class="">État de l’opération — lEtat</text>
-<text x="32" y="580" class="hint">Exemple de contenu; la liste réelle provient des DTO.</text>
+<text x="32" y="580" class="hint">Grille ancrée aux quatre bords; recherche élargie; messages ancrés en bas.</text>
 </svg>

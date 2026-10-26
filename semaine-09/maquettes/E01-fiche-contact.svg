@@ -14,5 +14,5 @@
 <rect x="310" y="167" width="165" height="38" rx="3" fill="#dfebf5" stroke="#9bacbc"/>
 <text x="322" y="192" class="">Effacer · bEffacer</text>
 <text x="32" y="248" class="">État de l’opération — lEtat</text>
-<text x="32" y="285" class="hint">Interface à construire au designer; aucun accès JSON dans les événements.</text>
+<text x="32" y="285" class="hint">Sur le formulaire : champs ancrés Top, Left, Right; message ancré en bas.</text>
 </svg>

@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="Commandes.Domaine/Commandes.Domaine.csproj" />
+  <Project Path="Commandes.Application/Commandes.Application.csproj" />
+  <Project Path="Commandes.Infrastructure/Commandes.Infrastructure.csproj" />
+  <Project Path="Commandes.Terminal/Commandes.Terminal.csproj" />
+  <Project Path="Commandes.Presentation.WinForms/Commandes.Presentation.WinForms.csproj" />
+  <Project Path="Commandes.Portee.WinForms/Commandes.Portee.WinForms.csproj" />
+  <Project Path="Commandes.WinForms/Commandes.WinForms.csproj" />
+  <Project Path="Commandes.Tests/Commandes.Tests.csproj" />
+</Solution>

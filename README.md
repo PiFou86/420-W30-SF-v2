@@ -38,9 +38,9 @@ exemples de code.
 
 ## Exercices
 
-Ce dépôt Git contient les exercices du cours. Chaque exercice se trouve dans un
-sous-dossier et comporte un fichier `README.md` qui décrit le travail à
-réaliser. Les exercices sont regroupés par semaine, soit par bloc de 5 heures.
+Ce dépôt Git contient les exercices du cours, regroupés par semaine, soit par
+bloc de 5 heures. L'index de chaque semaine renvoie aux énoncés et aux solutions
+de départ.
 
 [Semaine 9 — Contacts et WinForms](semaine-09/README.md) : une fiche de création
 formative, puis un gestionnaire avec liste et recherche à remettre.
