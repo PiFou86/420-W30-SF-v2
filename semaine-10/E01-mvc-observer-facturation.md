@@ -27,8 +27,8 @@ fiscale réelle. Soupe × 2 et Sandwich × 1 donnent 22,00 + 2,20 = **24,20**.
 3. Choisir le projet `.WinForms` comme projet de démarrage et lancer.
    L’interface s’ouvre; les changements ne sont pas encore diffusés et la
    facture affiche un message d’attente. Cela correspond aux blocs manquants.
-4. Créer votre branche `fonctionnalite/observer-dotnet` depuis `dev` et `dev`
-   depuis `main`.
+4. Créer `dev` depuis `main` si elle n’existe pas, puis votre branche
+   `fonctionnalite/observer-dotnet` depuis `dev`.
 
 La vue de commande appelle un contrôleur fourni; celui-ci demande une action
 au modèle de présentation. Après un succès seulement, le modèle publie un
@@ -45,9 +45,9 @@ WinForms sont déjà raccordés.
 | --- | --- | --- |
 | `.Presentation` | `ModeleCommande.cs` — `S10-S`, méthode `Subscribe` | Inscrire l’observateur dans la liste avant de retourner l’objet de désabonnement déjà fourni. |
 | `.Presentation` | `ModeleCommande.cs` — `S10-N`, diffusion après succès | Appeler `OnNext(etat)` sur l’observateur courant. La boucle et les protections sont fournies. |
-| `.WinForms` | `FormFacture.cs` — `S10-V`, méthode `OnNext` | Afficher numéro, sous-total, frais, total et statut à partir de `etat.Facture`. |
+| `.WinForms` | `FormFacture.cs` — `S10-V`, méthode privée `AfficherEtat` | Afficher numéro, sous-total, frais, total et statut à partir de `etat.Facture`. |
 | `.WinForms` | `FormFacture.cs` — `S10-A`, gestionnaire `Load` | Abonner cette fenêtre à son modèle et conserver le `IDisposable` retourné. |
-| `.WinForms` | `FormFacture.cs` — `S10-D`, gestionnaire `Disposed` | Terminer cet abonnement avant de libérer la référence. |
+| `.WinForms` | `FormFacture.cs` — `S10-D`, gestionnaire `Disposed` | Appeler la méthode privée `SeDesabonner()` déjà fournie. |
 | `.Tests` | `ObserverAtelierTests.cs` — `S10-T1` et `S10-T2` | Remplacer les deux exceptions d’attente par les tests décrits ci-dessous. |
 
 Dans `S10-V`, utiliser `lResumeFacture.Text` et les propriétés
@@ -72,12 +72,23 @@ ou `.resx` n’est demandé.
 - `Dispose` sur un abonnement retire uniquement cet observateur. L’autre vue
   continue à recevoir les changements. La classe `AbonnementCommande`, fournie,
   tolère un second appel à `Dispose`.
+- `AfficherEtat` contient le code d’affichage commun. `Load` l’appelle pour
+  l’état initial; `OnNext` l’appelle pour chaque notification. Ces appels sont fournis.
 - Le constructeur conserve le modèle; `Load` affiche l’état initial et abonne
   la fenêtre. `Disposed` termine l’abonnement. Créer un objet `FormFacture`
   sans le montrer ne l’abonne donc pas.
-- `OnCompleted` et `OnError` sont fournis. Ils décrivent la fin de la source;
+- La méthode privée `SeDesabonner()` appelle `Dispose`, puis libère la référence.
+  Elle est fournie et peut être appelée plusieurs fois. Dans `S10-D`, l’appeler
+  simplement à la fermeture; ne pas réécrire son code.
+- `OnCompleted` et `OnError` sont fournis et appellent aussi `SeDesabonner()`.
+  Ils décrivent la fin de la source;
   fermer une seule fenêtre ne doit appeler aucune de ces deux méthodes sur
   les autres vues. Un refus métier n’est pas une fin du flux.
+  Se désabonner ne déclenche pas automatiquement `OnCompleted`.
+- S’abonner dans le constructeur est une variante possible. Conserver le
+  `IDisposable` permet de se désabonner, indépendamment du moment de l’inscription.
+  Ici, `Load` et `Disposed` relient l’abonnement à l’ouverture et à la libération
+  de la fenêtre.
 
 Les comportements avancés sont déjà programmés : copie des abonnés, refus de
 réentrée, isolation d’une réaction défaillante, journalisation, fin normale ou

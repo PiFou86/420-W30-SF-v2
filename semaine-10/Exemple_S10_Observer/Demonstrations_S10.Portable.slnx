@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="Commandes.Application/Commandes.Application.csproj" />
+  <Project Path="Commandes.Domaine/Commandes.Domaine.csproj" />
+  <Project Path="Commandes.Infrastructure/Commandes.Infrastructure.csproj" />
+  <Project Path="Demo.Presentation.DotNet/Demo.Presentation.DotNet.csproj" />
+  <Project Path="Demo.Terminal.DotNet/Demo.Terminal.DotNet.csproj" />
+  <Project Path="Demo.Tests/Demo.Tests.csproj" />
+</Solution>

@@ -27,12 +27,17 @@ public sealed partial class FormFacture : Form, IObserver<EtatCommandeDto>
             return; // Le constructeur sans modèle est réservé au designer.
         }
 
-        OnNext(m_modele.Consulter());
+        AfficherEtat(m_modele.Consulter());
         // S10-A : conserver l’abonnement retourné par la source.
         m_abonnement = null; // À remplacer.
     }
 
     public void OnNext(EtatCommandeDto etat)
+    {
+        AfficherEtat(etat);
+    }
+
+    private void AfficherEtat(EtatCommandeDto etat)
     {
         ArgumentNullException.ThrowIfNull(etat);
         // S10-V : afficher les montants reçus et le statut, sans les recalculer.
