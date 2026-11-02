@@ -1,6 +1,6 @@
 namespace Commandes.Domaine;
 
-public sealed record Produit
+public sealed class Produit
 {
     public int Numero { get; }
     public string Nom { get; }

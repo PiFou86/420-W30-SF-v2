@@ -15,7 +15,7 @@ public sealed class FacturationTests
     [InlineData(0.015, 0.02, 0, 0.02)]
     public void Facture_NormaliseEtArronditLesMontants(double entree, double sousTotal, double frais, double total)
     {
-        Facture facture = new((decimal)entree);
+        Facture facture = new Facture((decimal)entree);
         Assert.Equal((decimal)sousTotal, facture.SousTotal);
         Assert.Equal((decimal)frais, facture.Frais);
         Assert.Equal((decimal)total, facture.Total);
@@ -37,8 +37,8 @@ public sealed class FacturationTests
     [Fact]
     public void ServiceFacturation_SuitLaCommandeEtConserveAncienDto()
     {
-        ServiceCommandes commandes = new(new DepotCommandesMemoire(), new CatalogueProduitsMemoire());
-        ServiceFacturation service = new(commandes);
+        ServiceCommandes commandes = new ServiceCommandes(new DepotCommandesMemoire(), new CatalogueProduitsMemoire());
+        ServiceFacturation service = new ServiceFacturation(commandes);
         FactureDto initiale = service.Consulter();
         commandes.Creer(101);
         commandes.AjouterProduit(1, 2);
@@ -56,7 +56,7 @@ public sealed class FacturationTests
     [Fact]
     public void EtatCommandeDto_RefuseSesComposantesNulles()
     {
-        ServiceCommandes commandes = new(new DepotCommandesMemoire(), new CatalogueProduitsMemoire());
+        ServiceCommandes commandes = new ServiceCommandes(new DepotCommandesMemoire(), new CatalogueProduitsMemoire());
         Assert.Throws<ArgumentNullException>(() => new EtatCommandeDto(null!, new ServiceFacturation(commandes).Consulter()));
         Assert.Throws<ArgumentNullException>(() => new EtatCommandeDto(commandes.Consulter(), null!));
     }

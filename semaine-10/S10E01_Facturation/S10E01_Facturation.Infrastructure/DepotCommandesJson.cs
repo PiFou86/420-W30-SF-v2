@@ -24,7 +24,9 @@ public sealed class DepotCommandesJson : IDepotCommandes
         }
 
         commandes.Add(commande.Copier());
-        File.WriteAllText(m_chemin, JsonSerializer.Serialize(commandes.Select(VersDonnees).ToArray()));
+        CommandeDonnees[] donnees = commandes.Select(VersDonnees).ToArray();
+        string json = JsonSerializer.Serialize(donnees);
+        File.WriteAllText(m_chemin, json);
     }
 
     public Commande? Obtenir(int numero)
@@ -49,20 +51,33 @@ public sealed class DepotCommandesJson : IDepotCommandes
             return new List<Commande>();
         }
 
-        List<CommandeDonnees?> donnees = JsonSerializer.Deserialize<List<CommandeDonnees?>>(json)
-            ?? throw new InvalidDataException("Liste attendue.");
-        List<Commande> commandes = new();
-        HashSet<int> numeros = new();
+        List<CommandeDonnees?>? donnees = JsonSerializer.Deserialize<List<CommandeDonnees?>>(json);
+        if (donnees is null)
+        {
+            throw new InvalidDataException("Liste attendue.");
+        }
+        List<Commande> commandes = new List<Commande>();
+        HashSet<int> numeros = new HashSet<int>();
         foreach (CommandeDonnees? item in donnees)
         {
             try
             {
-                if (item is null || item.Lignes is null || !numeros.Add(item.Numero))
+                if (item is null)
                 {
-                    throw new InvalidDataException("Entrée invalide ou dupliquée.");
+                    throw new InvalidDataException("Commande nulle.");
                 }
 
-                Commande commande = new(item.Numero);
+                if (item.Lignes is null)
+                {
+                    throw new InvalidDataException("Liste de lignes attendue.");
+                }
+
+                if (!numeros.Add(item.Numero))
+                {
+                    throw new InvalidDataException("Numéro dupliqué.");
+                }
+
+                Commande commande = new Commande(item.Numero);
                 foreach (LigneDonnees? ligne in item.Lignes)
                 {
                     if (ligne is null)
@@ -70,7 +85,8 @@ public sealed class DepotCommandesJson : IDepotCommandes
                         throw new InvalidDataException("Ligne nulle.");
                     }
 
-                    commande.Ajouter(new Produit(ligne.NumeroProduit, ligne.Nom!, ligne.Prix), ligne.Quantite);
+                    Produit produit = new Produit(ligne.NumeroProduit, ligne.Nom!, ligne.Prix);
+                    commande.Ajouter(produit, ligne.Quantite);
                 }
 
                 if (item.EstConfirmee)
@@ -80,7 +96,11 @@ public sealed class DepotCommandesJson : IDepotCommandes
 
                 commandes.Add(commande);
             }
-            catch (Exception exception) when (exception is ArgumentException or InvalidOperationException)
+            catch (ArgumentException exception)
+            {
+                throw new InvalidDataException("Données métier invalides.", exception);
+            }
+            catch (InvalidOperationException exception)
             {
                 throw new InvalidDataException("Données métier invalides.", exception);
             }
@@ -91,11 +111,44 @@ public sealed class DepotCommandesJson : IDepotCommandes
 
     private static CommandeDonnees VersDonnees(Commande commande)
     {
-        return new CommandeDonnees(commande.Numero, commande.EstConfirmee,
-            commande.Lignes.Select(ligne => (LigneDonnees?)new LigneDonnees(ligne.Produit.Numero,
-                ligne.Produit.Nom, ligne.Produit.Prix, ligne.Quantite)).ToList());
+        List<LigneDonnees?> lignes = new List<LigneDonnees?>();
+        foreach (LigneCommande ligne in commande.Lignes)
+        {
+            Produit produit = ligne.Produit;
+            LigneDonnees donnees = new LigneDonnees(produit.Numero, produit.Nom,
+                produit.Prix, ligne.Quantite);
+            lignes.Add(donnees);
+        }
+
+        return new CommandeDonnees(commande.Numero, commande.EstConfirmee, lignes);
     }
 
-    private sealed record CommandeDonnees(int Numero, bool EstConfirmee, List<LigneDonnees?>? Lignes);
-    private sealed record LigneDonnees(int NumeroProduit, string? Nom, decimal Prix, int Quantite);
+    private sealed class CommandeDonnees
+    {
+        public int Numero { get; }
+        public bool EstConfirmee { get; }
+        public List<LigneDonnees?>? Lignes { get; }
+
+        public CommandeDonnees(int numero, bool estConfirmee, List<LigneDonnees?>? lignes)
+        {
+            Numero = numero;
+            EstConfirmee = estConfirmee;
+            Lignes = lignes;
+        }
+    }
+    private sealed class LigneDonnees
+    {
+        public int NumeroProduit { get; }
+        public string? Nom { get; }
+        public decimal Prix { get; }
+        public int Quantite { get; }
+
+        public LigneDonnees(int numeroProduit, string? nom, decimal prix, int quantite)
+        {
+            NumeroProduit = numeroProduit;
+            Nom = nom;
+            Prix = prix;
+            Quantite = quantite;
+        }
+    }
 }

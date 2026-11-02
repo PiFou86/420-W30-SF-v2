@@ -1,9 +1,8 @@
-# Semaine 10 — MVC, Observer et facturation
+# Semaine 10 — Observer .NET et facture
 
-EG02 commence aux séances 19 et 20 (cinq heures), puis se poursuit à la séance 21 (trois heures en semaine 11). L’énoncé distingue les trois jalons; la pondération et les modalités restent sur la plateforme.
+Exercice ramassé EG02 : cinq heures maximum, en semaine 10. La pondération et
+les modalités restent sur la plateforme.
 
-- [Exercice 1](E01-mvc-observer-facturation.md) : réusiner la présentation et diffuser un changement d’état.
-- [Départ autonome](S10E01_Facturation/README.md) : présentation S9 et couches fournies; MVC et Observer à construire.
-- [Vérification Windows](VERIFICATION_WINDOWS.md) : observations réelles à consigner.
-
-Supports canoniques : [guide](<../../Notes_Cours/Semaine 10/Guide_revision_active_S10.md>) et [grille](<../../Notes_Cours/Semaine 10/Grille_autoevaluation_S10.md>) dans Notes_Cours/Semaine 10. Ces liens locaux supposent les deux dépôts voisins; la plateforme fournit les documents distribués. La comparaison MVVM ne crée pas un nouveau travail obligatoire.
+- [Exercice 1](E01-mvc-observer-facturation.md) : énoncé autonome, cinq blocs et deux tests guidés.
+- [Solution de départ](S10E01_Facturation/S10E01_Facturation.slnx) : MVC et couches fournis, interfaces .NET standard.
+- [Vérification Windows](VERIFICATION_WINDOWS.md) : six parcours à observer.

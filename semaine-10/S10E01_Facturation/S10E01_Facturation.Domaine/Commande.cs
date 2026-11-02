@@ -2,10 +2,16 @@ namespace Commandes.Domaine;
 
 public sealed class Commande
 {
-    private readonly List<LigneCommande> m_lignes = new();
+    private readonly List<LigneCommande> m_lignes = new List<LigneCommande>();
     public int Numero { get; }
     public bool EstConfirmee { get; private set; }
-    public IReadOnlyCollection<LigneCommande> Lignes => m_lignes.ToArray();
+    public IReadOnlyCollection<LigneCommande> Lignes
+    {
+        get
+        {
+            return m_lignes.ToArray();
+        }
+    }
 
     public decimal Total
     {
@@ -53,7 +59,7 @@ public sealed class Commande
 
     public Commande Copier()
     {
-        Commande copie = new(Numero);
+        Commande copie = new Commande(Numero);
         foreach (LigneCommande ligne in m_lignes)
         {
             copie.Ajouter(ligne.Produit, ligne.Quantite);

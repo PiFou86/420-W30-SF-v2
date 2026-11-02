@@ -6,7 +6,7 @@ public sealed class ServiceCommandes
 {
     private readonly IDepotCommandes m_depot;
     private readonly ICatalogueProduits m_catalogue;
-    private Commande m_commande = new(1);
+    private Commande m_commande = new Commande(1);
 
     public ServiceCommandes(IDepotCommandes depot, ICatalogueProduits catalogue)
     {

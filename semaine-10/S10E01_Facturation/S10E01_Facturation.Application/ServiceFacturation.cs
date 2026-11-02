@@ -15,7 +15,7 @@ public sealed class ServiceFacturation
     public FactureDto Consulter()
     {
         CommandeDto commande = m_commandes.Consulter();
-        Facture facture = new(commande.Total);
+        Facture facture = new Facture(commande.Total);
         return new FactureDto(commande.Numero, facture.SousTotal,
             facture.Frais, facture.Total, !commande.EstEnregistree);
     }

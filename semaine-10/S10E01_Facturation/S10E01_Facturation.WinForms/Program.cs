@@ -1,5 +1,6 @@
 using Commandes.Application;
 using Commandes.Infrastructure;
+using Commandes.Presentation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,48 +32,90 @@ internal static class Program
                 throw new InvalidOperationException("Journal et données doivent être distincts.");
             }
 
-            IDepotCommandes CreerDepot()
-            {
-                switch (format.ToLowerInvariant())
-                {
-                    case "memoire":
-                        return new DepotCommandesMemoire();
-                    case "json":
-                        return new DepotCommandesJson(chemin);
-                    default:
-                        throw new InvalidOperationException("Format inconnu.");
-                }
-            }
-
             if ((builder.Configuration["assemblage"] ?? "manuel") == "manuel")
             {
-                ServiceCommandes service = new(CreerDepot(), new CatalogueProduitsMemoire());
-                using FormCommande fenetre = new(service, journal);
-                System.Windows.Forms.Application.Run(fenetre);
+                ServiceCommandes commandes = new ServiceCommandes(CreerDepot(format, chemin), new CatalogueProduitsMemoire());
+                using ModeleCommande modele = new ModeleCommande(commandes, new ServiceFacturation(commandes), journal);
+                using FormCommande fenetre = new FormCommande();
+                using ControleurCommande controleur = new ControleurCommande(modele, fenetre, journal);
+                Executer(modele, fenetre, controleur);
             }
             else if (builder.Configuration["assemblage"] == "cadriciel")
             {
-                builder.Services.AddScoped<IDepotCommandes>(_ => CreerDepot());
+                builder.Services.AddScoped<IDepotCommandes>(_ => CreerDepot(format, chemin));
                 builder.Services.AddScoped<ICatalogueProduits, CatalogueProduitsMemoire>();
                 builder.Services.AddSingleton(journal);
                 builder.Services.AddScoped<ServiceCommandes>();
+                builder.Services.AddScoped<ServiceFacturation>();
+                builder.Services.AddScoped<ModeleCommande>();
                 builder.Services.AddScoped<FormCommande>();
+                builder.Services.AddScoped<IVueCommande>(services => services.GetRequiredService<FormCommande>());
+                builder.Services.AddScoped<ControleurCommande>();
                 using IHost hote = builder.Build();
                 using IServiceScope portee = hote.Services.CreateScope();
+                ModeleCommande modele = portee.ServiceProvider.GetRequiredService<ModeleCommande>();
                 FormCommande fenetre = portee.ServiceProvider.GetRequiredService<FormCommande>();
-                System.Windows.Forms.Application.Run(fenetre);
+                ControleurCommande controleur = portee.ServiceProvider.GetRequiredService<ControleurCommande>();
+                Executer(modele, fenetre, controleur);
             }
             else
             {
                 throw new InvalidOperationException("Assemblage inconnu.");
             }
         }
-        catch (Exception exception) when (exception is IOException or InvalidDataException
-            or UnauthorizedAccessException or System.Text.Json.JsonException
-            or ArgumentException or InvalidOperationException)
+        catch (IOException exception)
         {
             journal.Consigner("composition", exception);
             MessageBox.Show("Impossible de démarrer la prise de commande.", "Prise de commande", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        catch (InvalidDataException exception)
+        {
+            journal.Consigner("composition", exception);
+            MessageBox.Show("Impossible de démarrer la prise de commande.", "Prise de commande", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        catch (UnauthorizedAccessException exception)
+        {
+            journal.Consigner("composition", exception);
+            MessageBox.Show("Impossible de démarrer la prise de commande.", "Prise de commande", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        catch (System.Text.Json.JsonException exception)
+        {
+            journal.Consigner("composition", exception);
+            MessageBox.Show("Impossible de démarrer la prise de commande.", "Prise de commande", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        catch (ArgumentException exception)
+        {
+            journal.Consigner("composition", exception);
+            MessageBox.Show("Impossible de démarrer la prise de commande.", "Prise de commande", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        catch (InvalidOperationException exception)
+        {
+            journal.Consigner("composition", exception);
+            MessageBox.Show("Impossible de démarrer la prise de commande.", "Prise de commande", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private static IDepotCommandes CreerDepot(string format, string chemin)
+    {
+        switch (format.ToLowerInvariant())
+        {
+            case "memoire":
+                return new DepotCommandesMemoire();
+            case "json":
+                return new DepotCommandesJson(chemin);
+            default:
+                throw new InvalidOperationException("Format inconnu.");
+        }
+    }
+
+    private static void Executer(ModeleCommande modele, FormCommande fenetre, ControleurCommande controleur)
+    {
+        fenetre.Relier(controleur, modele.ConsulterProduits());
+        fenetre.DemandeFacture += (_, _) =>
+        {
+            FormFacture facture = new FormFacture(modele);
+            facture.Show(fenetre);
+        };
+        System.Windows.Forms.Application.Run(fenetre);
     }
 }

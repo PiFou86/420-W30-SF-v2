@@ -35,7 +35,7 @@ public sealed class DomaineTests
     [InlineData(-1)]
     public void LigneEtAjout_RefusentQuantiteNonPositive(int quantite)
     {
-        Produit produit = new(1, "A", 1m);
+        Produit produit = new Produit(1, "A", 1m);
         Assert.Throws<ArgumentOutOfRangeException>(() => new LigneCommande(produit, quantite));
         Assert.Throws<ArgumentOutOfRangeException>(() => new Commande(1).Ajouter(produit, quantite));
     }
@@ -50,7 +50,7 @@ public sealed class DomaineTests
     [Fact]
     public void Total_CalculePlusieursLignesEtCopieIndependante()
     {
-        Commande commande = new(101);
+        Commande commande = new Commande(101);
         commande.Ajouter(new Produit(1, "Soupe", 6.50m), 2);
         commande.Ajouter(new Produit(2, "Sandwich", 9m), 1);
         Assert.Equal(22m, commande.Total);
@@ -63,7 +63,7 @@ public sealed class DomaineTests
     [Fact]
     public void Confirmation_RefuseVideEtProtegeCommandeConfirmee()
     {
-        Commande commande = new(1);
+        Commande commande = new Commande(1);
         Assert.Throws<InvalidOperationException>(() => commande.Confirmer());
         commande.Ajouter(new Produit(1, "A", 1m), 1);
         commande.Confirmer();
@@ -74,7 +74,7 @@ public sealed class DomaineTests
     [Fact]
     public void Lignes_LaCopieNeModifiePasLaCollectionInterne()
     {
-        Commande commande = new(1);
+        Commande commande = new Commande(1);
         commande.Ajouter(new Produit(1, "A", 1m), 1);
         LigneCommande[] copie = Assert.IsType<LigneCommande[]>(commande.Lignes);
         copie[0] = new LigneCommande(new Produit(2, "B", 2m), 1);

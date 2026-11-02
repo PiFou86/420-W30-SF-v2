@@ -8,6 +8,21 @@ namespace Commandes.Tests;
 public sealed class ServiceCommandesTests
 {
     [Fact]
+    public void Creer_ApresEnregistrementNouvelleCommandeVideEtPrecedenteConservee()
+    {
+        DepotCommandesMemoire depot = new DepotCommandesMemoire();
+        ServiceCommandes service = new ServiceCommandes(depot, new CatalogueProduitsMemoire());
+        service.Creer(101);
+        service.AjouterProduit(1, 2);
+        Assert.True(service.Enregistrer().EstSucces);
+        CommandeDto nouvelle = service.Creer(102).Valeur;
+        Assert.Empty(nouvelle.Lignes);
+        Assert.False(nouvelle.EstEnregistree);
+        Assert.Equal(102, nouvelle.Numero);
+        Assert.Equal(13m, depot.Obtenir(101)?.Total);
+    }
+
+    [Fact]
     public void Constructeur_RefuseDependancesNulles()
     {
         Assert.Throws<ArgumentNullException>(() => new ServiceCommandes(null!, new CatalogueProduitsMemoire()));
@@ -19,7 +34,7 @@ public sealed class ServiceCommandesTests
     [InlineData(-1)]
     public void Creer_NumeroInvalideConserveCommande(int numero)
     {
-        ServiceCommandes service = new(new DepotCommandesMemoire(), new CatalogueProduitsMemoire());
+        ServiceCommandes service = new ServiceCommandes(new DepotCommandesMemoire(), new CatalogueProduitsMemoire());
         service.AjouterProduit(1, 1);
         Assert.False(service.Creer(numero).EstSucces);
         Assert.Single(service.Consulter().Lignes);
@@ -33,8 +48,8 @@ public sealed class ServiceCommandesTests
     [InlineData(99, 1)]
     public void Ajouter_RefusNeModifieNiCommandeNiDepot(int produit, int quantite)
     {
-        DepotObservateur depot = new();
-        ServiceCommandes service = new(depot, new CatalogueProduitsMemoire());
+        DepotObservateur depot = new DepotObservateur();
+        ServiceCommandes service = new ServiceCommandes(depot, new CatalogueProduitsMemoire());
         Assert.False(service.AjouterProduit(produit, quantite).EstSucces);
         Assert.Empty(service.Consulter().Lignes);
         Assert.Equal(0, depot.NombreAjouts);
@@ -43,7 +58,7 @@ public sealed class ServiceCommandesTests
     [Fact]
     public void Enregistrer_VideNeConsulteNiAjoute()
     {
-        DepotObservateur depot = new();
+        DepotObservateur depot = new DepotObservateur();
         Assert.False(new ServiceCommandes(depot, new CatalogueProduitsMemoire()).Enregistrer().EstSucces);
         Assert.Equal(0, depot.NombreLectures);
         Assert.Equal(0, depot.NombreAjouts);
@@ -52,8 +67,8 @@ public sealed class ServiceCommandesTests
     [Fact]
     public void Enregistrer_SuccesUnAjoutPuisSecondAppelRefuse()
     {
-        DepotObservateur depot = new();
-        ServiceCommandes service = new(depot, new CatalogueProduitsMemoire());
+        DepotObservateur depot = new DepotObservateur();
+        ServiceCommandes service = new ServiceCommandes(depot, new CatalogueProduitsMemoire());
         service.Creer(101);
         service.AjouterProduit(1, 2);
         service.AjouterProduit(2, 1);
@@ -70,8 +85,8 @@ public sealed class ServiceCommandesTests
     [Fact]
     public void Enregistrer_DoublonNePersistPas()
     {
-        DepotObservateur depot = new() { Existante = new Commande(1) };
-        ServiceCommandes service = new(depot, new CatalogueProduitsMemoire());
+        DepotObservateur depot = new DepotObservateur() { Existante = new Commande(1) };
+        ServiceCommandes service = new ServiceCommandes(depot, new CatalogueProduitsMemoire());
         service.AjouterProduit(1, 1);
         Assert.False(service.Enregistrer().EstSucces);
         Assert.Equal(0, depot.NombreAjouts);
@@ -81,9 +96,9 @@ public sealed class ServiceCommandesTests
     [Fact]
     public void Enregistrer_IncidentEcritureConserveBrouillonEtPermetNouvelEssai()
     {
-        IOException incident = new("secret simulé");
-        DepotObservateur depot = new() { IncidentAjout = incident };
-        ServiceCommandes service = new(depot, new CatalogueProduitsMemoire());
+        IOException incident = new IOException("secret simulé");
+        DepotObservateur depot = new DepotObservateur() { IncidentAjout = incident };
+        ServiceCommandes service = new ServiceCommandes(depot, new CatalogueProduitsMemoire());
         service.AjouterProduit(1, 2);
         Assert.Same(incident, Assert.Throws<IOException>(() => service.Enregistrer()));
         Assert.False(service.Consulter().EstEnregistree);
@@ -95,9 +110,9 @@ public sealed class ServiceCommandesTests
     [Fact]
     public void Enregistrer_IncidentLectureNeDevientPasRefusMetier()
     {
-        IOException incident = new("incident");
-        DepotObservateur depot = new() { IncidentLecture = incident };
-        ServiceCommandes service = new(depot, new CatalogueProduitsMemoire());
+        IOException incident = new IOException("incident");
+        DepotObservateur depot = new DepotObservateur() { IncidentLecture = incident };
+        ServiceCommandes service = new ServiceCommandes(depot, new CatalogueProduitsMemoire());
         service.AjouterProduit(1, 1);
         Assert.Same(incident, Assert.Throws<IOException>(() => service.Enregistrer()));
         Assert.Equal(0, depot.NombreAjouts);
@@ -106,7 +121,7 @@ public sealed class ServiceCommandesTests
     [Fact]
     public void Sortie_InstantaneStableEtNouvelleCommandeVide()
     {
-        ServiceCommandes service = new(new DepotCommandesMemoire(), new CatalogueProduitsMemoire());
+        ServiceCommandes service = new ServiceCommandes(new DepotCommandesMemoire(), new CatalogueProduitsMemoire());
         CommandeDto avant = service.AjouterProduit(1, 1).Valeur;
         service.AjouterProduit(2, 1);
         Assert.Single(avant.Lignes);

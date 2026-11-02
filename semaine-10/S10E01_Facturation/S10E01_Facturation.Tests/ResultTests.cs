@@ -9,7 +9,7 @@ public sealed class ResultTests
     [Fact]
     public void Succes_ExposeValeurSansMessageErreur()
     {
-        CommandeDto dto = new(new Commande(1));
+        CommandeDto dto = new CommandeDto(new Commande(1));
         Result<CommandeDto> resultat = Result<CommandeDto>.Succes(dto);
         Assert.True(resultat.EstSucces);
         Assert.Same(dto, resultat.Valeur);

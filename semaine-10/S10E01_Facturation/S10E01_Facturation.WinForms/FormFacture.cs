@@ -1,48 +1,72 @@
-using System.Globalization;
 using Commandes.Presentation;
 
 namespace S10E01_Facturation.WinForms;
 
-public sealed class FormFacture : Form, IObservateurCommande
+public sealed partial class FormFacture : Form, IObserver<EtatCommandeDto>
 {
-    private readonly Label m_resume = new();
-    private readonly IDisposable? m_abonnement; // À compléter.
+    private IDisposable? m_abonnement;
 
-    public FormFacture(ModeleCommande modele)
+    private readonly ModeleCommande? m_modele;
+
+    // Constructeur réservé au designer.
+    public FormFacture()
+    {
+        InitializeComponent();
+    }
+
+    public FormFacture(ModeleCommande modele) : this()
     {
         ArgumentNullException.ThrowIfNull(modele);
-        Text = "Facture de consultation";
-        Name = "FormFacture";
-        ClientSize = new Size(480, 280);
-        MinimumSize = new Size(440, 280);
-        AutoScaleMode = AutoScaleMode.Font;
-        m_resume.Name = "lblResumeFacture";
-        m_resume.Dock = DockStyle.Fill;
-        m_resume.Padding = new Padding(20);
-        m_resume.AccessibleName = "Résumé de facture";
-        Controls.Add(m_resume);
-        Actualiser(modele.Consulter());
-        m_abonnement = null; // À compléter : conserver l’abonnement.
+        m_modele = modele;
     }
 
-    public void Actualiser(EtatCommandeDto etat)
+    private void FormFacture_Load(object? sender, EventArgs e)
     {
-        ArgumentNullException.ThrowIfNull(etat);
-        CultureInfo culture = CultureInfo.GetCultureInfo("fr-CA");
-        m_resume.Text = $"Commande {etat.Facture.NumeroCommande}\n\n"
-            + $"Sous-total : {etat.Facture.SousTotal.ToString("C", culture)}\n"
-            + $"Frais pédagogiques (10 %) : {etat.Facture.Frais.ToString("C", culture)}\n"
-            + $"Total : {etat.Facture.Total.ToString("C", culture)}\n\n"
-            + (etat.Facture.EstProvisoire ? "Provisoire" : "Commande enregistrée");
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
+        if (m_modele is null)
         {
-            m_abonnement?.Dispose();
+            return; // Le constructeur sans modèle est réservé au designer.
         }
 
-        base.Dispose(disposing);
+        OnNext(m_modele.Consulter());
+        // S10-A : conserver l’abonnement retourné par la source.
+        m_abonnement = null; // À remplacer.
     }
+
+    public void OnNext(EtatCommandeDto etat)
+    {
+        ArgumentNullException.ThrowIfNull(etat);
+        // S10-V : afficher les montants reçus et le statut, sans les recalculer.
+        lResumeFacture.Text = "Affichage de la facture à compléter (S10-V).";
+    }
+
+    private void FormFacture_Disposed(object? sender, EventArgs e)
+    {
+        // S10-D : appeler la méthode SeDesabonner fournie.
+        // À compléter : appeler la méthode fournie.
+    }
+
+    // Fourni : le nettoyage peut être demandé plusieurs fois.
+    private void SeDesabonner()
+    {
+        if (m_abonnement is not null)
+        {
+            m_abonnement.Dispose();
+            m_abonnement = null;
+        }
+    }
+
+    // Fournis : une fin du flux est distincte d'un refus métier.
+    public void OnError(Exception erreur)
+    {
+        ArgumentNullException.ThrowIfNull(erreur);
+        SeDesabonner();
+        lResumeFacture.Text = "Les notifications de la facture sont interrompues.";
+    }
+
+    public void OnCompleted()
+    {
+        SeDesabonner();
+        lResumeFacture.Text += "\nNotifications terminées.";
+    }
+
 }

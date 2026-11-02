@@ -11,3 +11,4 @@
 | **Semaine 7** | Exceptions simples et personnalisées, collections, Repository en mémoire et distribution TP01 | [Guide de révision – S7](semaine-07/Guide_revision_active_S7.md) |
 | **Semaine 8** | Dépôt JSON | [Guide de révision – S8](semaine-08/Guide_revision_active_S8.md) |
 | **Semaine 9** | WinForms, présentation, événements, messages, ergonomie et responsabilités des couches | [Guide de révision – S9](semaine-09/Guide_revision_active_S9.md) |
+| **Semaine 10** | MVC, Observer, facturation et comparaison MVVM | [Guide de révision – S10](<../Notes_Cours/Semaine 10/Guide_revision_active_S10.md>) |

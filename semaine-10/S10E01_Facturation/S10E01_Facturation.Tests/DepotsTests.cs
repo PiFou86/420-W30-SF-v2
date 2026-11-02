@@ -9,7 +9,13 @@ namespace Commandes.Tests;
 public sealed class DepotsTests : IDisposable
 {
     private readonly string m_dossier = Path.Combine(Path.GetTempPath(), $"commandes-tests-{Guid.NewGuid():N}");
-    private string Chemin => Path.Combine(m_dossier, "commandes.json");
+    private string Chemin
+    {
+        get
+        {
+            return Path.Combine(m_dossier, "commandes.json");
+        }
+    }
 
     public DepotsTests()
     {
@@ -31,7 +37,7 @@ public sealed class DepotsTests : IDisposable
         Assert.Throws<ArgumentOutOfRangeException>(() => depot.Obtenir(0));
         Assert.Throws<ArgumentOutOfRangeException>(() => depot.Obtenir(-1));
         Assert.Throws<ArgumentNullException>(() => depot.Ajouter(null!));
-        Commande commande = new(1);
+        Commande commande = new Commande(1);
         commande.Ajouter(new Produit(1, "A", 6.5m), 2);
         commande.Confirmer();
         depot.Ajouter(commande);
@@ -43,8 +49,8 @@ public sealed class DepotsTests : IDisposable
     [Fact]
     public void Memoire_ProtegeAjoutEtLectureParCopie()
     {
-        DepotCommandesMemoire depot = new();
-        Commande originale = new(1);
+        DepotCommandesMemoire depot = new DepotCommandesMemoire();
+        Commande originale = new Commande(1);
         originale.Ajouter(new Produit(1, "A", 1m), 1);
         depot.Ajouter(originale);
         originale.Ajouter(new Produit(2, "B", 9m), 1);
@@ -56,7 +62,7 @@ public sealed class DepotsTests : IDisposable
     [Fact]
     public void Json_NouvelleInstanceReconstitueCommande()
     {
-        ServiceCommandes service = new(new DepotCommandesJson(Chemin), new CatalogueProduitsMemoire());
+        ServiceCommandes service = new ServiceCommandes(new DepotCommandesJson(Chemin), new CatalogueProduitsMemoire());
         service.Creer(101);
         service.AjouterProduit(1, 2);
         service.AjouterProduit(2, 1);
@@ -90,7 +96,7 @@ public sealed class DepotsTests : IDisposable
     public void Json_DonneesInvalidesNeSontPasReecrites(string contenu)
     {
         File.WriteAllText(Chemin, contenu);
-        DepotCommandesJson depot = new(Chemin);
+        DepotCommandesJson depot = new DepotCommandesJson(Chemin);
         Assert.Throws<InvalidDataException>(() => depot.Obtenir(1));
         Assert.Throws<InvalidDataException>(() => depot.Ajouter(new Commande(2)));
         Assert.Equal(contenu, File.ReadAllText(Chemin));
@@ -111,7 +117,7 @@ public sealed class DepotsTests : IDisposable
     [Fact]
     public void Catalogue_ContratEtCopieStructure()
     {
-        CatalogueProduitsMemoire catalogue = new();
+        CatalogueProduitsMemoire catalogue = new CatalogueProduitsMemoire();
         Assert.Throws<ArgumentOutOfRangeException>(() => catalogue.Obtenir(0));
         Assert.Null(catalogue.Obtenir(99));
         Produit[] copie = Assert.IsType<Produit[]>(catalogue.ObtenirTous());

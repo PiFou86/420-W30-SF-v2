@@ -11,3 +11,4 @@
 | **Semaine 7** | Exceptions simples et personnalisées, collections, Repository en mémoire et distribution TP01 | [Grille d’autoévaluation – S7](semaine-07/Grille_autoevaluation_S7_remplissable.pdf) |
 | **Semaine 8** | Dépôt JSON | [Grille d'auto-évaluation – S8](semaine-08/Grille_autoevaluation_S8_remplissable.pdf) |
 | **Semaine 9** | WinForms, présentation, événements, messages, ergonomie et responsabilités des couches | [Grille d'auto-évaluation – S9](semaine-09/Grille_autoevaluation_S9_remplissable.pdf) |
+| **Semaine 10** | MVC, Observer, facturation et comparaison MVVM | [Grille d’autoévaluation – S10](<../Notes_Cours/Semaine 10/Grille_autoevaluation_S10_remplissable.pdf>) |

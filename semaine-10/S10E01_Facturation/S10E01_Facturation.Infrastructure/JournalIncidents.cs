@@ -1,6 +1,5 @@
 using Commandes.Application;
 
-
 namespace Commandes.Infrastructure;
 
 public sealed class JournalIncidents : IJournalIncidents
@@ -22,7 +21,11 @@ public sealed class JournalIncidents : IJournalIncidents
         {
             File.AppendAllText(m_chemin, ligne);
         }
-        catch (Exception erreurJournal) when (erreurJournal is IOException or UnauthorizedAccessException)
+        catch (IOException)
+        {
+            // L'indisponibilité du journal ne masque pas le message sûr de présentation.
+        }
+        catch (UnauthorizedAccessException)
         {
             // L'indisponibilité du journal ne masque pas le message sûr de présentation.
         }

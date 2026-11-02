@@ -40,21 +40,21 @@ public sealed class JournalIncidentsTests : IDisposable
     [InlineData(" ")]
     public void Consigner_RefuseOperationInvalide(string? operation)
     {
-        JournalIncidents journal = new(Path.Combine(m_repertoire, "journal.log"));
+        JournalIncidents journal = new JournalIncidents(Path.Combine(m_repertoire, "journal.log"));
         Assert.IsAssignableFrom<ArgumentException>(Record.Exception(() => journal.Consigner(operation!, new IOException())));
     }
 
     [Fact]
     public void Consigner_RefuseExceptionNulle()
     {
-        JournalIncidents journal = new(Path.Combine(m_repertoire, "journal.log"));
+        JournalIncidents journal = new JournalIncidents(Path.Combine(m_repertoire, "journal.log"));
         Assert.Throws<ArgumentNullException>(() => journal.Consigner("lecture", null!));
     }
 
     [Fact]
     public void Consigner_JournalIndisponibleNeMasquePasIncident()
     {
-        JournalIncidents journal = new(m_repertoire); // Un dossier n'est pas un fichier journal.
+        JournalIncidents journal = new JournalIncidents(m_repertoire); // Un dossier n'est pas un fichier journal.
         Assert.Null(Record.Exception(() => journal.Consigner("lecture", new IOException())));
     }
 

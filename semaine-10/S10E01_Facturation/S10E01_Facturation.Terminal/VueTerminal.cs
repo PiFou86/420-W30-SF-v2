@@ -4,7 +4,7 @@ namespace Commandes.Terminal;
 
 public sealed class VueTerminal : IVueCommande
 {
-    public void Actualiser(EtatCommandeDto etat)
+    public void OnNext(EtatCommandeDto etat)
     {
         ArgumentNullException.ThrowIfNull(etat);
         Console.Out.WriteLine($"Commande {etat.Commande.Numero} : {etat.Commande.Total:F2}");
@@ -21,4 +21,16 @@ public sealed class VueTerminal : IVueCommande
         ArgumentException.ThrowIfNullOrWhiteSpace(message);
         Console.Error.WriteLine(message);
     }
+
+    public void OnError(Exception erreur)
+    {
+        ArgumentNullException.ThrowIfNull(erreur);
+        Console.Error.WriteLine("Les notifications sont interrompues.");
+    }
+
+    public void OnCompleted()
+    {
+        Console.Out.WriteLine("Notifications terminées.");
+    }
+
 }

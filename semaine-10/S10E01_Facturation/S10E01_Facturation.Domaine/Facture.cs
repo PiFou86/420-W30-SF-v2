@@ -1,6 +1,6 @@
 namespace Commandes.Domaine;
 
-// Convention pédagogique : frais de 10 %, sans prétention fiscale.
+// Frais de service fictifs de 10 %, choisis uniquement pour l’exemple.
 public sealed class Facture
 {
     private const decimal TauxFrais = 0.10m;

@@ -1,134 +1,173 @@
 using System.Globalization;
-using System.Text.Json;
 using Commandes.Application;
+using Commandes.Presentation;
 
 namespace S10E01_Facturation.WinForms;
 
-public partial class FormCommande : Form
+public partial class FormCommande : Form, IVueCommande
 {
-    private readonly ServiceCommandes? m_service;
-    private readonly IJournalIncidents? m_journal;
+    private ControleurCommande? m_controleur;
+    private EtatCommandeDto? m_etatCourant;
+    private IReadOnlyCollection<ProduitDto>? m_produits;
+    public event EventHandler? DemandeFacture;
 
-    // Réservé au designer; le point de composition utilise le constructeur injecté.
     public FormCommande()
     {
         InitializeComponent();
     }
 
-    public FormCommande(ServiceCommandes service, IJournalIncidents journal) : this()
+    public void Relier(ControleurCommande controleur, IReadOnlyCollection<ProduitDto> produits)
     {
-        ArgumentNullException.ThrowIfNull(service);
-        ArgumentNullException.ThrowIfNull(journal);
-        m_service = service;
-        m_journal = journal;
-        m_listeProduits.DisplayMember = nameof(ProduitDto.Nom);
-        m_listeProduits.DataSource = service.ConsulterProduits().ToArray();
-        Rafraichir(service.Consulter());
+        ArgumentNullException.ThrowIfNull(controleur);
+        ArgumentNullException.ThrowIfNull(produits);
+        if (m_controleur is not null)
+        {
+            throw new InvalidOperationException("Le formulaire est déjà relié.");
+        }
+
+        m_controleur = controleur;
+        m_produits = produits;
     }
 
-    private ServiceCommandes Service => m_service
-        ?? throw new InvalidOperationException("Le formulaire doit recevoir son service au lancement.");
+    private void FormCommande_Load(object? sender, EventArgs e)
+    {
+        if (m_produits is null || m_controleur is null || m_etatCourant is null)
+        {
+            return; // Le formulaire non relié reste utilisable par le designer.
+        }
+
+        colMontant.DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("fr-CA");
+        lbProduits.DisplayMember = nameof(ProduitDto.Nom);
+        lbProduits.DataSource = m_produits.ToArray();
+        OnNext(m_etatCourant);
+    }
+
+    private ControleurCommande Controleur
+    {
+        get
+        {
+            if (m_controleur is null)
+            {
+                throw new InvalidOperationException("Le formulaire doit recevoir son contrôleur au lancement.");
+            }
+
+            return m_controleur;
+        }
+    }
 
     private void Ajouter_Click(object? sender, EventArgs e)
     {
-        if (m_listeProduits.SelectedItem is not ProduitDto produit)
+        if (lbProduits.SelectedItem is not ProduitDto produit)
         {
-            m_etat.Text = "Sélectionnez un produit.";
-            m_listeProduits.Focus();
+            lEtat.Text = "Sélectionnez un produit.";
+            lbProduits.Focus();
             return;
         }
 
-        if (!int.TryParse(m_quantite.Text, out int quantite))
-        {
-            m_etat.Text = "La quantité doit être un entier.";
-            m_quantite.Focus();
-            m_quantite.SelectAll();
-            return;
-        }
+        int quantite = decimal.ToInt32(nudQuantite.Value);
 
-        Result<CommandeDto> resultat = Service.AjouterProduit(produit.Numero, quantite);
-        Presenter(resultat);
+        Controleur.Ajouter(produit.Numero, quantite);
     }
 
     private void Nouvelle_Click(object? sender, EventArgs e)
     {
-        if (!int.TryParse(m_numero.Text, out int numero))
+        if (!int.TryParse(tbNumero.Text, out int numero))
         {
-            m_etat.Text = "Le numéro doit être un entier positif.";
-            m_numero.Focus();
+            lEtat.Text = "Le numéro doit être un entier positif.";
+            tbNumero.Focus();
             return;
         }
 
-        CommandeDto courante = Service.Consulter();
-        if (!courante.EstEnregistree && courante.Lignes.Count > 0
+        if (m_etatCourant is not null && PossedeBrouillon(m_etatCourant)
             && MessageBox.Show(this, "Abandonner les lignes non enregistrées?", "Nouvelle commande",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
         {
             return;
         }
 
-        Presenter(Service.Creer(numero));
+        Controleur.Nouvelle(numero);
     }
 
     private void Enregistrer_Click(object? sender, EventArgs e)
     {
-        m_enregistrer.Enabled = false;
+        bEnregistrer.Enabled = false;
         try
         {
-            Result<CommandeDto> resultat = Service.Enregistrer();
-            Presenter(resultat);
-            if (resultat.EstSucces)
-            {
-                m_etat.Text = "Commande enregistrée.";
-            }
-        }
-        catch (Exception exception) when (exception is IOException or InvalidDataException
-            or UnauthorizedAccessException or JsonException)
-        {
-            m_journal?.Consigner("enregistrer commande", exception);
-            m_etat.Text = "Enregistrement impossible pour le moment. Vos lignes sont conservées.";
+            Controleur.Enregistrer();
         }
         finally
         {
-            CommandeDto courante = Service.Consulter();
-            m_enregistrer.Enabled = courante.Lignes.Count > 0 && !courante.EstEnregistree;
+            bEnregistrer.Enabled = m_etatCourant is not null && PossedeBrouillon(m_etatCourant);
         }
     }
 
-    private void Presenter(Result<CommandeDto> resultat)
+    public void OnNext(EtatCommandeDto etat)
     {
-        if (!resultat.EstSucces)
+        ArgumentNullException.ThrowIfNull(etat);
+        m_etatCourant = etat;
+        if (!IsHandleCreated)
         {
-            m_etat.Text = resultat.MessageErreur;
             return;
         }
 
-        Rafraichir(resultat.Valeur);
+        CommandeDto commande = etat.Commande;
+        lCommande.Text = $"Commande courante : {commande.Numero}";
+        dgvLignes.DataSource = null;
+        dgvLignes.DataSource = commande.Lignes.ToArray();
+        lTotal.Text = $"Sous-total : {commande.Total.ToString("C", CultureInfo.GetCultureInfo("fr-CA"))}";
+        if (commande.EstEnregistree)
+        {
+            lEtat.Text = "Commande enregistrée.";
+        }
+        else
+        {
+            lEtat.Text = "Commande en préparation.";
+        }
+        bAjouter.Enabled = !commande.EstEnregistree;
+        bEnregistrer.Enabled = PossedeBrouillon(etat);
     }
 
-    private void Rafraichir(CommandeDto commande)
+    public void PresenterRefus(string message)
     {
-        m_titreCourant.Text = $"Commande courante : {commande.Numero}";
-        m_grille.DataSource = null;
-        m_grille.DataSource = commande.Lignes.ToArray();
-        m_total.Text = $"Total : {commande.Total.ToString("C", CultureInfo.GetCultureInfo("fr-CA"))}";
-        m_etat.Text = commande.EstEnregistree ? "Commande enregistrée." : "Commande en préparation.";
-        m_ajouter.Enabled = !commande.EstEnregistree;
-        m_enregistrer.Enabled = commande.Lignes.Count > 0 && !commande.EstEnregistree;
+        ArgumentException.ThrowIfNullOrWhiteSpace(message);
+        lEtat.Text = message;
+    }
+
+    public void PresenterIncident(string message)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(message);
+        lEtat.Text = message;
+    }
+
+    private static bool PossedeBrouillon(EtatCommandeDto etat)
+    {
+        return !etat.Commande.EstEnregistree && etat.Commande.Lignes.Count > 0;
+    }
+
+    private void Facture_Click(object? sender, EventArgs e)
+    {
+        DemandeFacture?.Invoke(this, EventArgs.Empty);
     }
 
     private void FormCommande_FormClosing(object? sender, FormClosingEventArgs e)
     {
-        if (m_service is null)
-        {
-            return;
-        }
-
-        CommandeDto courante = m_service.Consulter();
-        if (!courante.EstEnregistree && courante.Lignes.Count > 0)
+        if (m_etatCourant is not null && PossedeBrouillon(m_etatCourant))
         {
             e.Cancel = MessageBox.Show(this, "Quitter sans enregistrer les lignes?", "Commande non enregistrée",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes;
         }
     }
+
+    // Fournis : aucun détail technique n'est présenté à l'utilisateur.
+    public void OnError(Exception erreur)
+    {
+        ArgumentNullException.ThrowIfNull(erreur);
+        PresenterIncident("Les notifications de la commande sont interrompues.");
+    }
+
+    public void OnCompleted()
+    {
+        lEtat.Text = "Notifications terminées.";
+    }
+
 }

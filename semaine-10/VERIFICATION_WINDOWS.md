@@ -1,29 +1,22 @@
-# Vérification Windows — MVC, Observer et facturation
+# Vérification Windows — Observer .NET
 
-Exécuter nativement sous Windows. La compilation croisée et les tests portables ne prouvent pas le comportement réel des formulaires. Conserver « À vérifier » tant que l’observation n’a pas été réalisée.
+Exécuter dans Visual Studio sous Windows. Les tests sans fenêtre et la
+compilation croisée ne remplacent pas ces observations. Aucun résultat
+n’est présumé avant l’essai.
 
-- Windows / .NET / Visual Studio :
-- Commit et mode manuel ou cadriciel :
-- Format du dépôt, taille de fenêtre et échelle :
+| Parcours | Résultat attendu | Observation |
+| --- | --- | --- |
+| Ouvrir Facture, ajouter Soupe × 2 puis Sandwich × 1 | Les deux vues évoluent; facture à 24,20, provisoire | À vérifier |
+| Essayer un numéro de commande invalide | Message de refus; les lignes restent présentes | À vérifier |
+| Fermer Facture, saisir une ligne, puis la rouvrir | État courant immédiat; ajouts suivants reçus une fois | À vérifier |
+| Ouvrir deux factures, en fermer une, puis ajouter | La facture restante et la commande continuent de fonctionner | À vérifier |
+| Enregistrer une commande valide | Statut enregistré après réussite du dépôt | À vérifier |
+| En mode JSON, rendre le fichier invalide, enregistrer, corriger puis réessayer | Message sûr, lignes conservées, puis réussite | À vérifier |
 
-| Vérification | Résultat attendu | Observation / preuve |
-|---|---|---|
-| Ouvrir la facture après ajout de lignes | État courant immédiat | À vérifier |
-| Soupe × 2, Sandwich × 1 avec facture ouverte | Sous-total 22,00; frais 2,20; total 24,20 | À vérifier |
-| Un clic Ajouter | Une ligne ajoutée; une notification par vue | À vérifier |
-| Deux fenêtres de facture ouvertes | Même état, aucune connaissance mutuelle | À vérifier |
-| Quantité abc puis 0 | Saisie puis refus distincts, aucune ligne ajoutée | À vérifier |
-| Enregistrement réussi | Statut provisoire retiré après sauvegarde | À vérifier |
-| JSON invalide ou dossier absent lors d’Enregistrer | Message sûr, brouillon conservé, facture provisoire | À vérifier |
-| Réessayer après correction du fichier/dossier | Réussite, état partagé cohérent | À vérifier |
-| Fermer la facture, puis ajouter | Ancienne fenêtre détachée, commande utilisable | À vérifier |
-| Réouvrir la facture | État courant et abonnement unique | À vérifier |
-| Annuler Nouvelle / fermeture avec brouillon | Lignes et facture inchangées | À vérifier |
-| Fermer la fenêtre propriétaire | Fenêtres secondaires fermées et abonnements terminés | À vérifier |
-| Clavier, raccourcis et échelle 150 % | Affichages et messages accessibles | À vérifier |
-| Manuel puis cadriciel | Même comportement et un seul modèle partagé | À vérifier |
-| Frontières des méthodes de vue, dans un test Windows ou le débogueur | Null/blanc refusés : FormFacture(null), Actualiser(null), PresenterRefus/Incident(blanc), Relier(null/null) et second Relier | À vérifier |
+Pour le dernier essai, choisir JSON dans appsettings.json et travailler dans un
+dossier d’entraînement. Le chemin relatif est résolu depuis l’exécutable.
+Conserver une copie du fichier avant de le rendre invalide; ne pas utiliser
+les données d’une autre activité. Les autres essais utilisent mémoire par défaut.
 
-Les contrôles de frontière sont faits dans un environnement d’essai, pas dans les boutons du produit. Pour simuler le dépôt, utiliser JSON dans un dossier d’entraînement avec un document invalide ou un dossier absent au moment d’Enregistrer. Le dépôt lit dans Obtenir/Ajouter, pas dans son constructeur. Corriger le dossier/contenu puis réessayer; ne pas altérer les données d’une autre activité.
-
-Captures : fenêtre de commande et facture cohérentes; puis une erreur sûre. Le compteur des notifications dans les tests fournit la preuve portable; le débogueur peut compléter l’observation d’une fenêtre fermée.
+Les quantités invalides restent refusées dans les couches fournies; le
+NumericUpDown facilite la saisie. Aucun changement du designer n’est demandé.

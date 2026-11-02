@@ -4,7 +4,13 @@ public sealed class LigneCommande
 {
     public Produit Produit { get; }
     public int Quantite { get; }
-    public decimal Montant => Produit.Prix * Quantite;
+    public decimal Montant
+    {
+        get
+        {
+            return Produit.Prix * Quantite;
+        }
+    }
 
     public LigneCommande(Produit produit, int quantite)
     {

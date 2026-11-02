@@ -5,7 +5,7 @@ namespace Commandes.Infrastructure;
 
 public sealed class CatalogueProduitsMemoire : ICatalogueProduits
 {
-    private readonly Dictionary<int, Produit> m_produits = new()
+    private readonly Dictionary<int, Produit> m_produits = new Dictionary<int, Produit>()
     {
         [1] = new Produit(1, "Soupe", 6.50m),
         [2] = new Produit(2, "Sandwich", 9m),

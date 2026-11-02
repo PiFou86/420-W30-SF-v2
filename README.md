@@ -45,6 +45,10 @@ de départ.
 [Semaine 9 — Contacts et WinForms](semaine-09/README.md) : une fiche de création
 formative, puis un gestionnaire avec liste et recherche à remettre.
 
+[Semaine 10 — MVC, Observer et facturation](semaine-10/README.md) :
+séparer les responsabilités de présentation et synchroniser plusieurs vues
+(EG02, cinq heures maximum en semaine 10).
+
 La liste des travaux à remettre se trouve dans le fichier
 [`exercices_ramassés.md`](exercices_ramassés.md). Consultez la plateforme
 d'enseignement pour connaître les échéances et les modalités de remise.

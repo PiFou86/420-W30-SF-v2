@@ -5,7 +5,7 @@ namespace Commandes.Infrastructure;
 
 public sealed class DepotCommandesMemoire : IDepotCommandes
 {
-    private readonly Dictionary<int, Commande> m_commandes = new();
+    private readonly Dictionary<int, Commande> m_commandes = new Dictionary<int, Commande>();
 
     public void Ajouter(Commande commande)
     {
