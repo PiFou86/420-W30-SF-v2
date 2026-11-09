@@ -49,6 +49,10 @@ formative, puis un gestionnaire avec liste et recherche à remettre.
 séparer les responsabilités de présentation et synchroniser plusieurs vues
 (EG02, cinq heures maximum en semaine 10).
 
+[Semaine 11 — Lambdas et LINQ](semaine-11/README.md) · atelier de 3 h.
+
+[Semaine 12 — Dépôt générique et revue](semaine-12/README.md) · atelier de 2 h.
+
 La liste des travaux à remettre se trouve dans le fichier
 [`exercices_ramassés.md`](exercices_ramassés.md). Consultez la plateforme
 d'enseignement pour connaître les échéances et les modalités de remise.

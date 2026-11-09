@@ -12,3 +12,5 @@
 | **Semaine 8** | Dépôt JSON | [Grille d'auto-évaluation – S8](semaine-08/Grille_autoevaluation_S8_remplissable.pdf) |
 | **Semaine 9** | WinForms, présentation, événements, messages, ergonomie et responsabilités des couches | [Grille d'auto-évaluation – S9](semaine-09/Grille_autoevaluation_S9_remplissable.pdf) |
 | **Semaine 10** | MVC, Observer, facturation et comparaison MVVM | [Grille d’autoévaluation – S10](<../Notes_Cours/Semaine 10/Grille_autoevaluation_S10_remplissable.pdf>) |
+| **Semaine 11** | Lambdas, LINQ et pagination | [Grille d’autoévaluation – S11](<../Notes_Cours/Semaine 11/Grille_autoevaluation_S11_remplissable.pdf>) |
+| **Semaine 12** | Dépôt générique, conflits Git et revue | [Grille d’autoévaluation – S12](<../Notes_Cours/Semaine 12/Grille_autoevaluation_S12_remplissable.pdf>) |

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="S12E01E03_Collaboration/S12E01E03_Collaboration.csproj" />
+  <Project Path="S12E01E03_Collaboration.Terminal/S12E01E03_Collaboration.Terminal.csproj" />
+</Solution>

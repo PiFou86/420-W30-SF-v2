@@ -45,7 +45,8 @@ public sealed class ModeleCommande : IObservable<EtatCommandeDto>, IDisposable
         }
 
         // S10-S : inscrire cet observateur dans la liste.
-        // À compléter : l’objet retourné ci-dessous sait déjà désabonner.
+        // À compléter : ajouter l’observateur à la liste.
+        // L’objet retourné ci-dessous le retirera lors de l’appel à Dispose().
         return new AbonnementCommande(m_observateurs, observateur);
     }
 

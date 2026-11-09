@@ -12,3 +12,5 @@
 | **Semaine 8** | Dépôt JSON | [Guide de révision – S8](semaine-08/Guide_revision_active_S8.md) |
 | **Semaine 9** | WinForms, présentation, événements, messages, ergonomie et responsabilités des couches | [Guide de révision – S9](semaine-09/Guide_revision_active_S9.md) |
 | **Semaine 10** | MVC, Observer, facturation et comparaison MVVM | [Guide de révision – S10](<../Notes_Cours/Semaine 10/Guide_revision_active_S10.md>) |
+| **Semaine 11** | Lambdas, LINQ et pagination | [Guide de révision – S11](<../Notes_Cours/Semaine 11/Guide_revision_active_S11.md>) |
+| **Semaine 12** | Dépôt générique, conflits Git et revue | [Guide de révision – S12](<../Notes_Cours/Semaine 12/Guide_revision_active_S12.md>) |
