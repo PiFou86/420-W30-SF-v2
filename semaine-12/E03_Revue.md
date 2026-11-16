@@ -1,11 +1,29 @@
 # Exercice 3
 
-**Activité intégrée au TP02 · environ 45 min, incluses dans son budget**
+**Point à pratiquer.** Formuler un commentaire précis à partir d’un défaut reproduit.
 
-Ouvrir une PR de `fonctionnalite/*` vers `dev` pour le contrat du lot et sa consultation. Décrire le comportement, le scénario reproductible et les tests exécutés. En binôme, relire la PR de l’autre; à trois, organiser une revue circulaire.
+Depuis le dossier `semaine-12`, préparer une copie dédiée avec les commandes suivantes dans Git Bash ou un terminal compatible.
 
-Lire le diff, exécuter un scénario et examiner au moins un test. Si une anomalie existe, préciser sa localisation, son impact et le résultat attendu. Ne pas inventer un défaut pour obtenir une demande de changement. Si aucun défaut bloquant n’est trouvé, expliquer les vérifications réalisées.
+```bash
+bash preparer_git.sh bac-a-sable-s12-revue
+cd bac-a-sable-s12-revue
+git switch revue/pagination
+git diff dev...revue/pagination
+```
 
-L’auteur corrige les problèmes relevés. Le relecteur vérifie la dernière version et consigne sa décision avec le commit relu. Après fusion, relancer les tests sur `dev`. Ajouter les liens et résultats au journal du TP; aucun compte rendu séparé n’est demandé.
+Le diff représente une petite proposition de changement. Son contrat annoncé est « Retourner jusqu’à deux soupes disponibles par page, triées par numéro. La recherche ignore la casse. »
 
-Cette activité constitue la première des deux revues du TP02. La seconde portera sur le réusinage en S13. La [PR préparée de pagination](pratique_facultative/E03_Revue.md) reste disponible comme entraînement facultatif.
+1. Ouvrir la solution `S12E01E03_Collaboration/S12E01E03_Collaboration.slnx` du bac à sable dans Visual Studio. Lire le changement dans la méthode `Rechercher` du fichier `RequeteCatalogue.cs`, dans le projet principal.
+2. Pour reproduire le comportement, ajouter le code suivant dans `Program.cs` du projet Terminal après l’affichage initial, puis générer et lancer.
+
+```csharp
+IReadOnlyList<Produit> page = produits.Rechercher("sOU", 0, 2);
+Console.Out.WriteLine($"Page reçue : {string.Join(", ", page.Select(produit => produit.Numero))}");
+```
+
+Le résultat attendu est `2, 3`. Le produit 1 est indisponible, les produits 2 et 3 sont disponibles.
+
+3. Rédiger un commentaire de deux ou trois phrases qui situe le défaut, décrit son effet avec ces données et précise le résultat attendu. Montrer le commentaire à un collègue pour qu’il puisse retrouver et comprendre le problème.
+4. Corriger l’ordre des opérations dans `RequeteCatalogue.cs`, puis rejouer le même scénario pour vérifier le commentaire.
+
+**Fin observable.** Un collègue peut reproduire le défaut à partir du commentaire, et le correctif permet au Terminal d’afficher `Page reçue : 2, 3`.
