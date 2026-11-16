@@ -7,3 +7,6 @@ Trois exercices courts, chacun centré sur un seul point à pratiquer dans une p
 - [Exercice 3](E03_Revue.md) - formuler un commentaire de revue à partir d’un défaut reproduit.
 
 L’exercice 1 fournit le code et les résultats d’une petite PR simulée. Les exercices 2 et 3 utilisent chacun une copie de la [solution de départ](S12E01E03_Collaboration/S12E01E03_Collaboration.slnx), préparée par `preparer_git.sh` avec les branches nécessaires. Les trois exercices peuvent être réalisés indépendamment.
+
+
+Une modification
