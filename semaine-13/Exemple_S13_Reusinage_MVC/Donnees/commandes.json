@@ -1,0 +1,7 @@
+[
+  { "Identifiant": 1, "Lignes": [
+    { "PrixUnitaire": 12.50, "Quantite": 2 },
+    { "PrixUnitaire": 5.00, "Quantite": 1 }
+  ] },
+  { "Identifiant": 2, "Lignes": [] }
+]

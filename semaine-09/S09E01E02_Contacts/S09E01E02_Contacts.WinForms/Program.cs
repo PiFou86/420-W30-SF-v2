@@ -12,7 +12,7 @@ internal static class Program
     public static void Main(string[] args)
     {
         ApplicationConfiguration.Initialize();
-        IJournalIncidents journal = new JournalIncidents(Path.Combine(AppContext.BaseDirectory, "contacts.log"));
+        IJournalIncidents? journal = null;
         try
         {
             HostApplicationBuilder builder = Host.CreateApplicationBuilder(new HostApplicationBuilderSettings
@@ -76,8 +76,10 @@ internal static class Program
         }
     }
 
-    private static void SignalerIncident(IJournalIncidents journal, Exception exception)
+    private static void SignalerIncident(IJournalIncidents? journal, Exception exception)
     {
+        // Le journal de secours est créé seulement si la configuration a échoué.
+        journal ??= new JournalIncidents(Path.Combine(AppContext.BaseDirectory, "contacts.log"));
         journal.Consigner("lancement contacts", exception);
         MessageBox.Show("Impossible de démarrer la fiche de contact.", "Contacts",
             MessageBoxButtons.OK, MessageBoxIcon.Error);

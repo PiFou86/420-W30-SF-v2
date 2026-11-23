@@ -53,6 +53,8 @@ séparer les responsabilités de présentation et synchroniser plusieurs vues
 
 [Semaine 12 — Pull requests, conflits Git et revue](semaine-12/README.md) · atelier de 2 h.
 
+[Semaine 13 — Réusinage architectural avec l’IDE](semaine-13/README.md) · atelier de 2 h maximum.
+
 La liste des travaux à remettre se trouve dans le fichier
 [`exercices_ramassés.md`](exercices_ramassés.md). Consultez la plateforme
 d'enseignement pour connaître les échéances et les modalités de remise.

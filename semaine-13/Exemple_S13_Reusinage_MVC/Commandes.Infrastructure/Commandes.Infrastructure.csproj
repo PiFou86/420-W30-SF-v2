@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../Commandes.Application/Commandes.Application.csproj" />
+    <ProjectReference Include="../Commandes.Domaine/Commandes.Domaine.csproj" />
+    <Compile Include="../Donnees/*.cs" Link="Donnees/%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

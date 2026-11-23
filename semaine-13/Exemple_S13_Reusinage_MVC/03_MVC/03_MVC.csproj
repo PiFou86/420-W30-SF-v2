@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Commandes.Demonstration</RootNamespace>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Commandes.Application/Commandes.Application.csproj" />
+    <ProjectReference Include="../Commandes.Infrastructure/Commandes.Infrastructure.csproj" />
+    <ProjectReference Include="../Commandes.Presentation/Commandes.Presentation.csproj" />
+    <Compile Update="FormCommande.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormCommande.Designer.cs">
+      <DependentUpon>FormCommande.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="FormCommande.resx">
+      <DependentUpon>FormCommande.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="../Donnees/commandes.json" Link="commandes.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

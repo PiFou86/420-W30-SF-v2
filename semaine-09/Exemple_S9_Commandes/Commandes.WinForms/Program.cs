@@ -14,7 +14,7 @@ internal static class Program
     public static void Main(string[] args)
     {
         ApplicationConfiguration.Initialize();
-        IJournalIncidents journal = new JournalIncidents(Path.Combine(AppContext.BaseDirectory, "commandes.log"));
+        IJournalIncidents? journal = null;
         try
         {
             HostApplicationBuilder builder = Host.CreateApplicationBuilder(new HostApplicationBuilderSettings
@@ -75,8 +75,10 @@ internal static class Program
         }
     }
 
-    private static void SignalerIncident(IJournalIncidents journal, Exception exception)
+    private static void SignalerIncident(IJournalIncidents? journal, Exception exception)
     {
+        // Le journal de secours est créé seulement si la configuration a échoué.
+        journal ??= new JournalIncidents(Path.Combine(AppContext.BaseDirectory, "commandes.log"));
         journal.Consigner("composition", exception);
         MessageBox.Show("Impossible de démarrer la prise de commande.", "Prise de commande", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }

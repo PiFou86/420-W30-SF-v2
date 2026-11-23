@@ -10,7 +10,7 @@ internal static class Program
 {
     public static void Main(string[] args)
     {
-        IJournalIncidents journal = new JournalIncidents(Path.Combine(AppContext.BaseDirectory, "contacts.log"));
+        IJournalIncidents? journal = null;
         try
         {
             HostApplicationBuilder builder = Host.CreateApplicationBuilder(new HostApplicationBuilderSettings
@@ -86,8 +86,10 @@ internal static class Program
         }
     }
 
-    private static void SignalerIncident(IJournalIncidents journal, Exception exception)
+    private static void SignalerIncident(IJournalIncidents? journal, Exception exception)
     {
+        // Le journal de secours est créé seulement si la configuration a échoué.
+        journal ??= new JournalIncidents(Path.Combine(AppContext.BaseDirectory, "contacts.log"));
         journal.Consigner("terminal contacts", exception);
         Console.Error.WriteLine("Opération impossible pour le moment.");
         Environment.ExitCode = 1;
